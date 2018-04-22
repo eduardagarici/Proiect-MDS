@@ -57,13 +57,40 @@
         app:layout_constraintTop_toBottomOf="@+id/imageReservation"
         app:layout_constraintVertical_bias="0.0">
 
+        <TextView
+            android:id="@+id/nameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="36dp"
+            android:text="@string/nameText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="64dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="64dp"
+            android:ems="10"
+            android:hint="@string/hintNamePers"
+            android:inputType="textPersonName"
+            app:layout_constraintBaseline_toBaselineOf="@+id/nameText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/nameText" />
+
         <EditText
             android:id="@+id/noPers"
-            android:layout_width="167dp"
-            android:layout_height="38dp"
-            android:layout_marginEnd="48dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginRight="48dp"
+            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:ems="10"
             android:hint="@string/hintNoPers"
@@ -79,10 +106,10 @@
             android:layout_height="0dp"
             android:layout_marginLeft="40dp"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="20dp"
             android:text="@string/noPers"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/nameText" />
 
         <TextView
             android:id="@+id/dateText"
@@ -97,11 +124,11 @@
 
         <EditText
             android:id="@+id/date"
-            android:layout_width="167dp"
-            android:layout_height="38dp"
-            android:layout_marginEnd="48dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginRight="48dp"
+            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:ems="10"
             android:hint="@string/hintDateText"
@@ -124,8 +151,8 @@
 
         <EditText
             android:id="@+id/time"
-            android:layout_width="167dp"
-            android:layout_height="38dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
@@ -135,7 +162,7 @@
             android:inputType="time"
             app:layout_constraintBaseline_toBaselineOf="@+id/timeText"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.707"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/timeText" />
 
         <TextView
@@ -151,8 +178,8 @@
 
         <EditText
             android:id="@+id/duration"
-            android:layout_width="167dp"
-            android:layout_height="38dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
@@ -162,8 +189,9 @@
             android:inputType="numberSigned"
             app:layout_constraintBaseline_toBaselineOf="@+id/durationText"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.642"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/durationText" />
+
     </android.support.constraint.ConstraintLayout>
 
     <Button
