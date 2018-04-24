@@ -13,6 +13,7 @@ public class Reservations{
     private boolean chosenBoardGame;
     private String boardGame;
     private boolean specialMentions;
+    private int tableNumber;
     private List<Product> products = new LinkedList<>();
 
     Reservations(String name, int noOfPersons,Date date, int duration){
@@ -97,5 +98,13 @@ public class Reservations{
     }
     public void setProducts(List<Product> products){
         this.products=products;
+    }
+
+    public int getTableNumber() {
+        return tableNumber;
+    }
+
+    public void setTableNumber(int tableNumber) {
+        this.tableNumber = tableNumber;
     }
 }

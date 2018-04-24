@@ -38,12 +38,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Name" />
+                android:layout_margin="5dp"
+                android:text="Name"
+
+                />
             <TextView
                 android:id="@+id/putName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -55,12 +61,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_margin="5dp"
                 android:text="No of persons" />
             <TextView
                 android:id="@+id/putPeople"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:textAlignment="center"/>
 
         </LinearLayout>
 
@@ -73,12 +82,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Date" />
+                android:text="Date"
+                android:layout_margin="5dp"/>
             <TextView
                 android:id="@+id/putDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:textAlignment="center"/>
         </LinearLayout>
 
         <LinearLayout
@@ -90,12 +102,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Estimated duration" />
+                android:text="Estimated duration"
+                android:layout_margin="5dp"/>
             <TextView
                 android:id="@+id/putDuration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:textAlignment="center"/>
         </LinearLayout>
     </LinearLayout>
 
