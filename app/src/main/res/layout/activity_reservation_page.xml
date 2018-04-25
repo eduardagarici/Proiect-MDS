@@ -122,7 +122,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/noPersText" />
 
-        <EditText
+        <TextView
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -130,9 +130,10 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
+            android:padding="5dp"
             android:ems="10"
+            android:textSize="18dp"
             android:hint="@string/hintDateText"
-            android:inputType="date"
             app:layout_constraintBaseline_toBaselineOf="@+id/dateText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -149,7 +150,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dateText" />
 
-        <EditText
+        <TextView
             android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -158,8 +159,9 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:ems="10"
+            android:padding="5dp"
+            android:textSize="18dp"
             android:hint="@string/hintTimeText"
-            android:inputType="time"
             app:layout_constraintBaseline_toBaselineOf="@+id/timeText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
