@@ -16,9 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity android:name=".MainActivity">
 
         </activity>
+=======
+
+        <activity android:name=".Checkout"></activity>
+>>>>>>> origin/master
     </application>
 
 </manifest>
