@@ -1,16 +1,16 @@
 package com.example.user.mdsapplication;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
-public class ReservationsTest implements Serializable {
+public class MainReservation implements Serializable {
     private String name;
     private int noPers;
     private Date date;
     private int  duration;
 
 
-    ReservationsTest(String nume, int nrPers, Date data ,int durata )
+    MainReservation(String nume, int nrPers, Date data ,int durata )
     {
         this.name = nume;
         this.noPers = nrPers;
@@ -41,9 +41,7 @@ public class ReservationsTest implements Serializable {
     public void setDuration(int duration) {
         this.duration = duration;
     }
-    public Date getDate() {
-        return date;
-    }
+    public Date getDate() { return date; }
 
     public void setDate(Date date) {
         this.date = date;
