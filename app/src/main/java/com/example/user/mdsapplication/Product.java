@@ -1,14 +1,39 @@
 package com.example.user.mdsapplication;
 
 public class Product{
+    private int id;
+    private int idImage;
     private String name;
     private int quantity;
+
+    public int getIdImage() {
+        return idImage;
+    }
+
+    public void setIdImage(int idImage) {
+        this.idImage = idImage;
+    }
+
     private double price;
 
-    Product(String name, int quantity, double price){
-        this.name=name;
-        this.quantity=quantity;
-        this.price=price;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public Product(int id, int idImage, String name, int quantity, double price) {
+        this.id = id;
+        this.idImage = idImage;
+        this.name = name;
+        this.quantity = quantity;
+        this.price = price;
     }
 
     public double getPrice() {

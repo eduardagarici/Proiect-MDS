@@ -67,7 +67,7 @@ public class Reservations{
         this.boardGame = boardGame;
     }
     public void addProduct(String name,int quantity,double price){
-        products.add(new Product(name,quantity,price));
+        products.add(new Product(1,100,name,quantity,price));
     }
 
     public boolean isChosenBoardGame() {

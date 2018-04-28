@@ -41,8 +41,8 @@ public class Checkout extends AppCompatActivity {
     public void createObject() {
         Date date = new Date(2019, 10, 20);
         LinkedList<Product> products = new LinkedList<>();
-        products.add(new Product("Cola", 2, 250.30));
-        products.add(new Product("fanta", 3, 190));
+        products.add(new Product(1,100,"Cola", 2, 250.30));
+        products.add(new Product(2,100,"fanta", 3, 190));
         reserve = new Reservations("Gigel", 5, date, 3, "Catan", products);
     }
 
