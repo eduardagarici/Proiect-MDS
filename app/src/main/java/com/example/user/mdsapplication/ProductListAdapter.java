@@ -1,8 +1,8 @@
 package com.example.user.mdsapplication;
 
 import android.content.Context;
-import android.media.Image;
-import android.provider.ContactsContract;
+import android.content.res.Resources;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -44,7 +44,10 @@ import java.util.List;
             //v.setLayoutParams(params);
 
             ImageView imgProduct=(ImageView)v.findViewById(R.id.imageProduct);
-            imgProduct.setImageResource(mProducts.get(position).getIdImage());
+            int drawableResourceId = mContext.getResources().getIdentifier(mProducts.get(position).getResourceImage(),"drawable", mContext.getPackageName());
+            Log.v("nameRes",mProducts.get(position).getResourceImage());
+            Log.v("idRes",String.valueOf(drawableResourceId));
+            imgProduct.setImageResource(drawableResourceId);
 
             TextView textProduct=(TextView)v.findViewById(R.id.textProduct);
             textProduct.setText(mProducts.get(position).getName());
@@ -53,7 +56,7 @@ import java.util.List;
             quantityProduct.setText(String.valueOf(mProducts.get(position).getQuantity()));
 
             final TextView priceProduct=(TextView) v.findViewById(R.id.priceProduct);
-            priceProduct.setText(String.valueOf(mProducts.get(position).getPrice()*mProducts.get(position).getQuantity()) + " lei");
+            priceProduct.setText(String.valueOf(mProducts.get(position).getPricePerUnit()*mProducts.get(position).getQuantity()) + " lei");
 
             Button minusProduct=(Button) v.findViewById(R.id.minusProduct);
             minusProduct.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +66,7 @@ import java.util.List;
                     if(quantity>0) {
                         mProducts.get(position).setQuantity(quantity - 1);
                         quantityProduct.setText(String.valueOf(mProducts.get(position).getQuantity()));
-                        priceProduct.setText(String.valueOf(mProducts.get(position).getPrice()*mProducts.get(position).getQuantity()) + " lei");
+                        priceProduct.setText(String.valueOf(mProducts.get(position).getPricePerUnit()*mProducts.get(position).getQuantity()) + " lei");
                     }
                 }
             });
@@ -75,7 +78,7 @@ import java.util.List;
                     if(quantity<10) {
                         mProducts.get(position).setQuantity(quantity + 1);
                         quantityProduct.setText(String.valueOf(mProducts.get(position).getQuantity()));
-                        priceProduct.setText(String.valueOf(mProducts.get(position).getPrice()*mProducts.get(position).getQuantity()) + " lei");
+                        priceProduct.setText(String.valueOf(mProducts.get(position).getPricePerUnit()*mProducts.get(position).getQuantity()) + " lei");
                     }
                 }
             });

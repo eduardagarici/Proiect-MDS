@@ -1,20 +1,21 @@
 package com.example.user.mdsapplication;
 
-public class Product{
+import java.io.Serializable;
+
+public class Product implements Serializable{
     private int id;
-    private int idImage;
+    private String resourceImage;
     private String name;
     private int quantity;
+    private double pricePerUnit;
 
-    public int getIdImage() {
-        return idImage;
+    public String getResourceImage() {
+        return resourceImage;
     }
 
-    public void setIdImage(int idImage) {
-        this.idImage = idImage;
+    public void setResourceImage(String resourceImage) {
+        this.resourceImage = resourceImage;
     }
-
-    private double price;
 
     public int getId() {
         return id;
@@ -24,24 +25,28 @@ public class Product{
         this.id = id;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setPricePerUnit(double pricePerUnit) {
+        this.pricePerUnit = pricePerUnit;
     }
 
-    public Product(int id, int idImage, String name, int quantity, double price) {
+    public Product(){
+        this.quantity = 0;
+    }
+
+    public Product(int id, String resourceImage, String name, double pricePerUnit) {
         this.id = id;
-        this.idImage = idImage;
+        this.resourceImage = resourceImage;
         this.name = name;
-        this.quantity = quantity;
-        this.price = price;
+        this.quantity = 0;
+        this.pricePerUnit = pricePerUnit;
     }
 
-    public double getPrice() {
-        return price;
+    public double getPricePerUnit() {
+        return pricePerUnit;
     }
 
     public void setPrice(int price) {
-        this.price = price;
+        this.pricePerUnit = price;
     }
 
     public int getQuantity() {

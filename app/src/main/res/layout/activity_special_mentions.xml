@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SpecialMentions"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    tools:context=".SpecialMentions">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -52,37 +52,70 @@
 
             </ViewFlipper>
         </LinearLayout>
-        <TextView
-            android:id="@+id/food"
+
+        <LinearLayout
+            android:id="@+id/chooseBoardGame"
             android:layout_width="match_parent"
-            android:layout_height="100px"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="219dp"
-            android:text="Food and Drinks" />
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linearLayout"
+            android:layout_marginBottom="30dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp">
 
+            <TextView
+                android:layout_marginLeft="50dp"
+                android:id="@+id/boardGame"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Choose Boardgame"
+                android:textColor="@color/colorPrimary"
+                android:gravity="center"/>
 
+            <Spinner
+                android:layout_marginRight="50dp"
+                android:layout_weight="1"
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/boardGame"></Spinner>
+        </LinearLayout>
 
-        <ListView
-            android:id="@+id/ListView"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dip"
-            android:layout_alignParentBottom="true"
-            android:dividerHeight="5dp"
-            android:divider="@color/colorPrimary"
-            android:layout_below="@id/food"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="200dp"></ListView>
+            android:layout_height="250dp"
+            android:layout_below="@id/chooseBoardGame">
 
+            <TextView
+                android:id="@+id/food"
+                android:layout_marginBottom="20dp"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:text="Food and Drinks"
+                android:textSize="18sp"/>
+
+            <ListView
+                android:id="@+id/ListView"
+                android:layout_below="@id/food"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@color/colorPrimary"
+                android:dividerHeight="5dp"></ListView>
+        </RelativeLayout>
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/submitButtonSpecial"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="13dp"
             android:background="@android:color/holo_red_dark"
-            android:layout_below="@id/ListView"
             android:text="Checkout"
+            app:layout_constraintEnd_toEndOf="parent"
             tools:layout_editor_absoluteX="148dp"
             tools:layout_editor_absoluteY="427dp" />
     </RelativeLayout>
-</ScrollView >
+</ScrollView>

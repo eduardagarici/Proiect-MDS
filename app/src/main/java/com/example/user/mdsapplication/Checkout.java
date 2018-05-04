@@ -1,8 +1,9 @@
 package com.example.user.mdsapplication;
 
-import android.support.constraint.ConstraintLayout;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -13,14 +14,12 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import org.w3c.dom.Text;
-
 import java.util.Date;
 import java.util.LinkedList;
 
 public class Checkout extends AppCompatActivity {
 
-    //Reservations rezervation = getIntent().getSerializableExtras( "Reservation" );
+    private MainReservation details;
     private Reservations reserve;
     private DatabaseReference mDatabase=FirebaseDatabase.getInstance().getReference();
     @Override
@@ -29,9 +28,9 @@ public class Checkout extends AppCompatActivity {
         setContentView(R.layout.activity_checkout);
         createObject();
         createDetails();
-        if (reserve.isChosenBoardGame())
+        if (!reserve.getBoardGame().equals("none"))
             createBoardGame();
-        if (reserve.hasSpecialMentions()) {
+        if (reserve.getProducts()!=null && reserve.getProducts().size()!=0) {
             createSpecialMentions();
             addSpecialMentions();
         }
@@ -39,11 +38,13 @@ public class Checkout extends AppCompatActivity {
     }
 
     public void createObject() {
-        Date date = new Date(2019, 10, 20);
-        LinkedList<Product> products = new LinkedList<>();
-        products.add(new Product(1,100,"Cola", 2, 250.30));
-        products.add(new Product(2,100,"fanta", 3, 190));
-        reserve = new Reservations("Gigel", 5, date, 3, "Catan", products);
+
+        Intent i=getIntent();
+        reserve=(Reservations) i.getSerializableExtra("reservation");
+        if(reserve==null){
+            details=(MainReservation) i.getSerializableExtra("mainReservation");
+            reserve=new Reservations(details);
+        }
     }
 
     public void createDetails() {
@@ -52,10 +53,10 @@ public class Checkout extends AppCompatActivity {
         TextView dateText = (TextView) findViewById(R.id.putDate);
         TextView duration = (TextView) findViewById(R.id.putDuration);
 
-        userName.setText(reserve.getUserName());
-        people.setText(""+reserve.getNoOfPersons());
-        dateText.setText(reserve.getDate());
-        duration.setText("" + reserve.getDuration());
+        userName.setText(reserve.getMainDetails().getName());
+        people.setText(String.valueOf(reserve.getMainDetails().getNoPers()));
+        dateText.setText(reserve.getMainDetails().getDate());
+        duration.setText(reserve.getMainDetails().getDuration()+"h");
     }
 
     public void createBoardGame() {
@@ -101,7 +102,7 @@ public class Checkout extends AppCompatActivity {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
 
-        if (reserve.isChosenBoardGame())
+        if (!reserve.getBoardGame().equals("none"))
             relativeParams.addRule(RelativeLayout.BELOW, R.id.boardGame);
         else
             relativeParams.addRule(RelativeLayout.BELOW, R.id.details);
@@ -159,7 +160,7 @@ public class Checkout extends AppCompatActivity {
 
         double sum = 0;
         for (Product p : reserve.getProducts()) {
-            sum += p.getPrice();
+            sum += p.getPricePerUnit();
             LinearLayout item = new LinearLayout(this);
             item.setLayoutParams(linearParams);
 
@@ -173,7 +174,7 @@ public class Checkout extends AppCompatActivity {
             quantity.setLayoutParams(linearParams);
 
             TextView price = new TextView(this);
-            price.setText("" + p.getPrice());
+            price.setText("" + p.getPricePerUnit());
             price.setGravity(Gravity.RIGHT);
             price.setLayoutParams(linearParams);
 
@@ -212,7 +213,7 @@ public class Checkout extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDatabase.child("activeReservations").push().setValue(reserve);
+                mDatabase.child("activeReservations").child(reserve.getMainDetails().markerDateDatabase()).child(String.valueOf(reserve.getMainDetails().getTable())).child(reserve.getMainDetails().markerTimeDatabase()).setValue(reserve);
             }
         });
     }

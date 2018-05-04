@@ -1,62 +1,42 @@
 package com.example.user.mdsapplication;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 
-public class Reservations{
-    private String userName;
-    private int noOfPersons;
-    private Date date;
-    private int duration;
-    private boolean chosenBoardGame;
+public class Reservations implements Serializable{
+    MainReservation mainDetails;
     private String boardGame;
-    private boolean specialMentions;
-    private int tableNumber;
     private List<Product> products = new LinkedList<>();
 
-    Reservations(String name, int noOfPersons,Date date, int duration){
-        this.userName = name;
-        this.noOfPersons = noOfPersons;
-        this.duration = duration;
-        this.chosenBoardGame = false;
-        this.specialMentions = false;
+    public Reservations(MainReservation mainDetails) {
+        this.mainDetails = mainDetails;
     }
 
-    Reservations(String name, int noOfPersons, Date date, int duration, String boardGame, LinkedList<Product> products){
-        this.userName = name;
-        this.noOfPersons = noOfPersons;
-        this.duration = duration;
-        this.date = date;
-        this.chosenBoardGame = true;
-        this.specialMentions = true;
+    public Reservations(MainReservation mainDetails, String boardGame) {
+        this.mainDetails = mainDetails;
+        this.boardGame = boardGame;
+    }
+
+    public Reservations(MainReservation mainDetails, List<Product> products) {
+        this.mainDetails = mainDetails;
+        this.products = products;
+    }
+
+    public Reservations(MainReservation mainDetails, String boardGame, List<Product> products) {
+        this.mainDetails = mainDetails;
         this.boardGame = boardGame;
         this.products = products;
     }
 
-    public String getUserName() {
-        return userName;
+    public MainReservation getMainDetails() {
+        return mainDetails;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public int getNoOfPersons() {
-        return noOfPersons;
-    }
-
-    public void setNoOfPersons(int noOfPersons) {
-        this.noOfPersons = noOfPersons;
-    }
-
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
+    public void setMainDetails(MainReservation mainDetails) {
+        this.mainDetails = mainDetails;
     }
 
     public String getBoardGame() {
@@ -66,45 +46,12 @@ public class Reservations{
     public void setBoardGame(String boardGame) {
         this.boardGame = boardGame;
     }
-    public void addProduct(String name,int quantity,double price){
-        products.add(new Product(1,100,name,quantity,price));
-    }
 
-    public boolean isChosenBoardGame() {
-        return chosenBoardGame;
-    }
-
-    public void setChosenBoardGame(boolean chosenBoardGame) {
-        this.chosenBoardGame = chosenBoardGame;
-    }
-
-    public boolean hasSpecialMentions() {
-        return specialMentions;
-    }
-
-    public void setSpecialMentions(boolean specialMentions) {
-        this.specialMentions = specialMentions;
-    }
-
-    public String getDate() {
-        return date.getDate() + "/" +  date.getMonth() + "/" + date.getYear();
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-    public List<Product> getProducts(){
+    public List<Product> getProducts() {
         return products;
     }
-    public void setProducts(List<Product> products){
-        this.products=products;
-    }
 
-    public int getTableNumber() {
-        return tableNumber;
-    }
-
-    public void setTableNumber(int tableNumber) {
-        this.tableNumber = tableNumber;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }
