@@ -9,28 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<<<<<<< HEAD
-        <activity android:name=".SpecialMentions">
-=======
+
+
+
         <activity android:name=".ReservationPage">
->>>>>>> 9028767faf57e62990d8393b9c2e4f4eff9c67e3
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-        <activity android:name=".MainActivity" />
-=======
-
-        <activity android:name=".MainActivity">
-
-        </activity>
-
->>>>>>> 9028767faf57e62990d8393b9c2e4f4eff9c67e3
+         <activity android:name=".MainActivity" />
+        <activity android:name=".SpecialMentions"></activity>
         <activity android:name=".Checkout"></activity>
-
     </application>
 
 </manifest>

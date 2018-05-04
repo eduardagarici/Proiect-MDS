@@ -1,13 +1,5 @@
 <resources>
     <string name="app_name"></string>
-<<<<<<< HEAD
-    <string-array name="boardGamesList">
-        <item>none</item>
-        <item>activity</item>
-        <item>catan</item>
-        <item>rezistence</item>
-    </string-array>
-=======
     <string name="reservationTitle"> REZERVA ONLINE </string>
     <string name="nameText"> Nume </string>
     <string name="noPers"> Numar Persoane </string>
@@ -21,5 +13,4 @@
     <string name="hintDateText">  Introduceti data </string>
     <string name="hintTimeText">  Introduceti ora </string>
     <string name="hintDurationText"> Introduceti nr. ore </string>
->>>>>>> 9028767faf57e62990d8393b9c2e4f4eff9c67e3
 </resources>
