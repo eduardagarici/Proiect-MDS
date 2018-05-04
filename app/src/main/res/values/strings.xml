@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name"></string>
+    <string name="reservationTitle"> REZERVA ONLINE </string>
+    <string name="nameText"> Nume </string>
+    <string name="noPers"> Numar Persoane </string>
+    <string name="dateText"> Data </string>
+    <string name="timeText"> Ora </string>
+    <string name="durationText"> Durata </string>
+    <string name="specialMentions"> Alte mentiuni </string>
+    <string name="checkoutText"> CHECKOUT </string>
+    <string name="hintNamePers"> Introduceti numele dvs. </string>
+    <string name="hintNoPers"> Introduceti numarul </string>
+    <string name="hintDateText">  Introduceti data </string>
+    <string name="hintTimeText">  Introduceti ora </string>
+    <string name="hintDurationText"> Introduceti nr. ore </string>
 </resources>
