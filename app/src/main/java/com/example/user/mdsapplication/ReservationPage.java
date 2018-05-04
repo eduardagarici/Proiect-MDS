@@ -175,7 +175,7 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
         int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
         int currentMinute = Calendar.getInstance().get(Calendar.MINUTE);
 
-        if(hourFinal < 8 || hourFinal + duration > 24)
+        if(hourFinal < 8)
             return true;
         if(yearFinal == Calendar.getInstance().get(Calendar.YEAR) &&
            monthFinal == Calendar.getInstance().get(Calendar.MONTH) + 1 &&
@@ -234,6 +234,8 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
         return true;
         if(hourBD > hourFinal && finishedTimeCurrent > finishedTimeBD)
             return true;
+        if(hourBD > hourFinal && finishedTimeCurrent == finishedTimeBD && minBD <= minuteFinal)
+            return true;
         return false;
     }
 
@@ -267,10 +269,10 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
 
     public void createIntent()
     {
-        MainReservation rezervare2 = new MainReservation(name, noPers, date, time, duration, Table);
+        MainReservation reservationObj = new MainReservation(name, noPers, date, time, duration, Table);
 
         Intent i = new Intent(ReservationPage.this, MainActivity.class);
-        i.putExtra("sampleObject", rezervare2);
+        i.putExtra("sampleObject", reservationObj);
         startActivity(i);
     }
 
@@ -298,8 +300,9 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
                             }
                         }
                     }
+
                     for(int i : fitTable)
-                        Log.v("aici",String.valueOf(i));
+                        Log.v("aici", String.valueOf(i));
                     verifyReservation(temp);
                 }
 
@@ -439,7 +442,7 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
                     if(ready) ready = false;
 
                 }
-                if(durationInput.getText().toString().length() == 0)
+                if(durationInput.getText().toString().length() == 0 || Integer.valueOf(durationInput.getText().toString()) + hourFinal > 24)
                 {
                     durationInput.setBackground(redBorder);
                     if(ready) ready = false;

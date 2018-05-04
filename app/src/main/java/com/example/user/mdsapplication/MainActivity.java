@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         MainReservation rezervare1 =  (MainReservation) i.getSerializableExtra("sampleObject");
-        Log.v("rezervare", String.valueOf(rezervare1.getTable()));
     }
 
 }
