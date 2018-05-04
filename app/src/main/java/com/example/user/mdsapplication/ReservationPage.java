@@ -271,9 +271,10 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
     {
         MainReservation reservationObj = new MainReservation(name, noPers, date, time, duration, Table);
 
-        Intent i = new Intent(ReservationPage.this, MainActivity.class);
-        i.putExtra("sampleObject", reservationObj);
-        startActivity(i);
+        Intent c = new Intent(ReservationPage.this, Checkout.class);
+        c.putExtra("sampleObject", reservationObj);
+        startActivity(c);
+        
     }
 
     public void checkBlockListThenVerifyReservation(final boolean temp)

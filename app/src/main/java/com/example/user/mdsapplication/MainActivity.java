@@ -15,8 +15,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent i = getIntent();
-        MainReservation rezervare1 =  (MainReservation) i.getSerializableExtra("sampleObject");
     }
 
 }
