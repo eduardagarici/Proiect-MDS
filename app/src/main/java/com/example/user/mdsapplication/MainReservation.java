@@ -1,6 +1,7 @@
 package com.example.user.mdsapplication;
 
 import java.io.Serializable;
+<<<<<<< HEAD
 
 public class MainReservation implements Serializable{
     private String name;
@@ -19,6 +20,30 @@ public class MainReservation implements Serializable{
         this.table = table;
     }
 
+=======
+import java.util.Date;
+
+public class MainReservation implements Serializable {
+
+    private String name;
+    private int noPers;
+    private String date;
+
+    private String time;
+
+    private int  duration;
+    private int table;
+
+    MainReservation(String nume, int nrPers, String data,String timp, int durata, int masa)
+    {
+        this.name = nume;
+        this.noPers = nrPers;
+        this.date = data;
+        this. duration = durata;
+        this.time = timp;
+        this.table = masa;
+    }
+>>>>>>> 9028767faf57e62990d8393b9c2e4f4eff9c67e3
     public String getName() {
         return name;
     }
@@ -34,7 +59,10 @@ public class MainReservation implements Serializable{
     public void setNoPers(int noPers) {
         this.noPers = noPers;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9028767faf57e62990d8393b9c2e4f4eff9c67e3
     public String getDate() {
         return date;
     }
@@ -42,6 +70,12 @@ public class MainReservation implements Serializable{
     public void setDate(String date) {
         this.date = date;
     }
+<<<<<<< HEAD
+=======
+    public int getDuration() {
+        return duration;
+    }
+>>>>>>> 9028767faf57e62990d8393b9c2e4f4eff9c67e3
 
     public String getTime() {
         return time;
@@ -51,6 +85,7 @@ public class MainReservation implements Serializable{
         this.time = time;
     }
 
+<<<<<<< HEAD
     public int getDuration() {
         return duration;
     }
@@ -59,6 +94,11 @@ public class MainReservation implements Serializable{
         this.duration = duration;
     }
 
+=======
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+>>>>>>> 9028767faf57e62990d8393b9c2e4f4eff9c67e3
     public int getTable() {
         return table;
     }
@@ -67,6 +107,7 @@ public class MainReservation implements Serializable{
         this.table = table;
     }
 
+<<<<<<< HEAD
     public String markerDateDatabase(){
         return date.substring(0,2) + date.substring(3,5) + date.substring(6);
     }
@@ -74,4 +115,6 @@ public class MainReservation implements Serializable{
     public String markerTimeDatabase(){
         return time.substring(0,2) + time.substring(3);
     }
+=======
+>>>>>>> 9028767faf57e62990d8393b9c2e4f4eff9c67e3
 }
