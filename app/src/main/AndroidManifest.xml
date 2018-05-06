@@ -9,20 +9,41 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
-
-        <activity android:name=".ReservationPage">
-
+        <activity
+            android:name="com.example.user.mdsapplication.ui.activities.SplashActivity"
+            android:theme="@style/AppTheme.NoActionBar.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-         <activity android:name=".MainActivity" />
-        <activity android:name=".SpecialMentions"></activity>
-        <activity android:name=".Checkout"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SpecialMentions" />
+        <activity android:name=".Checkout" />
+        <activity android:name=".ReservationPage"/>
+        <activity
+            android:name="com.example.user.mdsapplication.ui.activities.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name="com.example.user.mdsapplication.ui.activities.RegisterActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name="com.example.user.mdsapplication.ui.activities.ChatActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".ui.activities.UserListingActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <service android:name="com.example.user.mdsapplication.fcm.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name="com.example.user.mdsapplication.fcm.MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
