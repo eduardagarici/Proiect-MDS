@@ -2,6 +2,7 @@ package com.example.user.mdsapplication;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,14 +52,18 @@ import java.util.List;
 
             TextView textProduct=(TextView)v.findViewById(R.id.textProduct);
             textProduct.setText(mProducts.get(position).getName());
+            textProduct.setTextColor(Color.parseColor("#264073"));
 
             final TextView quantityProduct=(TextView) v.findViewById(R.id.quantityProduct);
             quantityProduct.setText(String.valueOf(mProducts.get(position).getQuantity()));
+            quantityProduct.setTextColor(Color.parseColor("#264073"));
 
             final TextView priceProduct=(TextView) v.findViewById(R.id.priceProduct);
             priceProduct.setText(String.valueOf(mProducts.get(position).getPricePerUnit()*mProducts.get(position).getQuantity()) + " lei");
+            priceProduct.setTextColor(Color.parseColor("#264073"));
 
             Button minusProduct=(Button) v.findViewById(R.id.minusProduct);
+
             minusProduct.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -71,6 +76,7 @@ import java.util.List;
                 }
             });
             Button plusProduct=(Button) v.findViewById(R.id.plusProduct);
+
             plusProduct.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

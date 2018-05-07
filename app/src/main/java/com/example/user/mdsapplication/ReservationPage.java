@@ -208,7 +208,7 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
                 if(fitTable != null && !fitTable.isEmpty())
                     checkBlockListThenVerifyReservation(temp);
                 else
-                    noReservationAvailableAlert("Pentru rezervari cu un numar de cel putin 10 persoane, va rugam sa ne contactati pe Chat");
+                    noReservationAvailableAlert("No table is available at the date and time chosen");
             }
 
             @Override
@@ -250,7 +250,7 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
         });
 
         AlertDialog alert = noReservationDialog.create();
-        alert.setTitle("Eroare Rezervare");
+        alert.setTitle("Reservation error");
         alert.show();
     }
 
@@ -272,7 +272,7 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
         MainReservation reservationObj = new MainReservation(name, noPers, date, time, duration, Table);
 
         Intent c = new Intent(ReservationPage.this, Checkout.class);
-        c.putExtra("sampleObject", reservationObj);
+        c.putExtra("mainReservation", reservationObj);
         startActivity(c);
         
     }
@@ -302,8 +302,7 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
                         }
                     }
 
-                    for(int i : fitTable)
-                        Log.v("aici", String.valueOf(i));
+
                     verifyReservation(temp);
                 }
 
@@ -321,7 +320,7 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
         if (temp)
             mDatabase.child("BlockedTables").child(String.valueOf(Table)).child(_dateBD).push().setValue(new TemporaryReservation(time, duration));
         createIntent();
-        Toast.makeText(getApplicationContext(), "Se salveaza rezervarea...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Saving reservation...", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -367,7 +366,7 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
                    }
 
                    if(validReservation == false)
-                       noReservationAvailableAlert("Nicio masa nu este disponibila la data si ora aleasa");
+                       noReservationAvailableAlert("No table is available at the date and time chosen");
                }
 
                @Override
@@ -432,6 +431,12 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
                     if(ready) ready = false;
 
                 }
+                else if(Integer.valueOf(noPersInput.getText().toString()) > 10)
+                {
+                    noReservationAvailableAlert("Please contact us by chat for reservations for a group with over 10 people");
+                    if (ready) ready = false;
+                    noPersInput.setText(null);
+                }
                 if(dateInput.getText().toString().length() == 0 || lessThanCurrentDate()) {
 
                     dateInput.setBackground(redBorder);
@@ -443,7 +448,12 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
                     if(ready) ready = false;
 
                 }
-                if(durationInput.getText().toString().length() == 0 || Integer.valueOf(durationInput.getText().toString()) + hourFinal > 24)
+                if(durationInput.getText().toString().length() == 0)
+                {
+                    durationInput.setBackground(redBorder);
+                    if(ready) ready = false;
+                }
+                else if (hourFinal != 0 && Integer.valueOf(durationInput.getText().toString()) + hourFinal > 24)
                 {
                     durationInput.setBackground(redBorder);
                     if(ready) ready = false;
