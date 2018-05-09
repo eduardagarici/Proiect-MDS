@@ -26,6 +26,18 @@ public class GetUsersInteractor implements GetUsersContract.Interactor {
 
     @Override
     public void getAllUsersFromFirebase() {
+        final String[] privilege = new String[1];
+        FirebaseDatabase.getInstance().getReference().child(Constants.ARG_USERS).child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("privilege").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                privilege[0] = dataSnapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         FirebaseDatabase.getInstance().getReference().child(Constants.ARG_USERS).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -34,8 +46,16 @@ public class GetUsersInteractor implements GetUsersContract.Interactor {
                 while (dataSnapshots.hasNext()) {
                     DataSnapshot dataSnapshotChild = dataSnapshots.next();
                     User user = dataSnapshotChild.getValue(User.class);
-                    if (!TextUtils.equals(user.uid, FirebaseAuth.getInstance().getCurrentUser().getUid())) {
-                        users.add(user);
+                    if (privilege[0].equals("admin")) {
+                        if (!TextUtils.equals(user.uid, FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                            users.add(user);
+                        }
+                    }
+                    else {
+                        if (user.getPrivilege().equals("admin"))
+                            if (!TextUtils.equals(user.uid, FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                                users.add(user);
+                            }
                     }
                 }
                 mOnGetAllUsersListener.onGetAllUsersSuccess(users);

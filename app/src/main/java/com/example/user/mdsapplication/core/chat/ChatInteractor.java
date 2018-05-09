@@ -3,7 +3,7 @@ package com.example.user.mdsapplication.core.chat;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.user.mdsapplication.fcm.FcmNotificationBuilder;
+;
 import com.example.user.mdsapplication.models.Chat;
 import com.example.user.mdsapplication.utils.Constants;
 import com.example.user.mdsapplication.utils.SharedPrefUtil;
@@ -56,11 +56,6 @@ public class ChatInteractor implements ChatContract.Interactor {
                     getMessageFromFirebaseUser(chat.senderUid, chat.receiverUid);
                 }
                 // send push notification to the receiver
-                sendPushNotificationToReceiver(chat.sender,
-                        chat.message,
-                        chat.senderUid,
-                        new SharedPrefUtil(context).getString(Constants.ARG_FIREBASE_TOKEN),
-                        receiverFirebaseToken);
                 mOnSendMessageListener.onSendMessageSuccess();
             }
 
@@ -71,20 +66,6 @@ public class ChatInteractor implements ChatContract.Interactor {
         });
     }
 
-    private void sendPushNotificationToReceiver(String username,
-                                                String message,
-                                                String uid,
-                                                String firebaseToken,
-                                                String receiverFirebaseToken) {
-        FcmNotificationBuilder.initialize()
-                .title(username)
-                .message(message)
-                .username(username)
-                .uid(uid)
-                .firebaseToken(firebaseToken)
-                .receiverFirebaseToken(receiverFirebaseToken)
-                .send();
-    }
 
     @Override
     public void getMessageFromFirebaseUser(String senderUid, String receiverUid) {

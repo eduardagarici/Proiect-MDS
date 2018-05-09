@@ -17,14 +17,10 @@ import android.widget.Toast;
 import com.example.user.mdsapplication.R;
 import com.example.user.mdsapplication.core.chat.ChatContract;
 import com.example.user.mdsapplication.core.chat.ChatPresenter;
-import com.example.user.mdsapplication.events.PushNotificationEvent;
 import com.example.user.mdsapplication.models.Chat;
 import com.example.user.mdsapplication.ui.adapters.ChatRecyclerAdapter;
 import com.example.user.mdsapplication.utils.Constants;
 import com.google.firebase.auth.FirebaseAuth;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 
@@ -53,13 +49,13 @@ public class ChatFragment extends Fragment implements ChatContract.View, TextVie
     @Override
     public void onStart() {
         super.onStart();
-        EventBus.getDefault().register(this);
+       // EventBus.getDefault().register(this);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        EventBus.getDefault().unregister(this);
+       // EventBus.getDefault().unregister(this);
     }
 
     @Nullable
@@ -145,14 +141,6 @@ public class ChatFragment extends Fragment implements ChatContract.View, TextVie
     @Override
     public void onGetMessagesFailure(String message) {
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
-    }
-
-    @Subscribe
-    public void onPushNotificationEvent(PushNotificationEvent pushNotificationEvent) {
-        if (mChatRecyclerAdapter == null || mChatRecyclerAdapter.getItemCount() == 0) {
-            mChatPresenter.getMessage(FirebaseAuth.getInstance().getCurrentUser().getUid(),
-                    pushNotificationEvent.getUid());
-        }
     }
 }
 
