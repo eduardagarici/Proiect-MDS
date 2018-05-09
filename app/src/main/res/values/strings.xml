@@ -1,4 +1,5 @@
 <resources>
+<<<<<<< HEAD
     <string name="app_name"></string>
     <string name="reservationTitle"> ONLINE RESERVATION </string>
     <string name="nameText"> Name </string>
@@ -13,4 +14,41 @@
     <string name="hintDateText">  Date </string>
     <string name="hintTimeText"> Hour </string>
     <string name="hintDurationText"> No. of hours </string>
+=======
+    <string name="app_name"> Chat </string>
+    <string name="reservationTitle"> REZERVA ONLINE </string>
+    <string name="nameText"> Nume </string>
+    <string name="noPers"> Numar Persoane </string>
+    <string name="dateText"> Data </string>
+    <string name="timeText"> Ora </string>
+    <string name="durationText"> Durata </string>
+    <string name="specialMentions"> Alte mentiuni </string>
+    <string name="checkoutText"> CHECKOUT </string>
+    <string name="hintNamePers"> Introduceti numele dvs. </string>
+    <string name="hintNoPers"> Introduceti numarul </string>
+    <string name="hintDateText">  Introduceti data </string>
+    <string name="hintTimeText">  Introduceti ora </string>
+    <string name="hintDurationText"> Introduceti nr. ore </string>
+
+    <string name="action_logout">Logout</string>
+    <string name="action_settings">Settings</string>
+    <string name="email">Email ID</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="login_register">New user,tap here to register</string>
+    <string name="register">Register</string>
+
+    <string name="user_successfully_added">User successfully added</string>
+    <string name="user_unable_to_add">Unable to add user</string>
+    <string name="adding_user_to_db">Adding user to database</string>
+    <string name="loading">Loading</string>
+    <string name="please_wait">Please wait...</string>
+
+    <string name="font_family_roboto_light">sans-serif-thin</string>
+    <string name="type_a_message">Type a message...</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="logout">Logout</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="cancel">Cancel</string>
+>>>>>>> chatPage
 </resources>
