@@ -230,11 +230,11 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
 
         if(hourBD <= hourFinal && finishedTimeBD > hourFinal)
         return true;
-        if(hourBD <= hourFinal && finishedTimeBD == hourFinal && minBD >= minuteFinal)
+        if(hourBD <= hourFinal && finishedTimeBD == hourFinal && minBD > minuteFinal)
         return true;
         if(hourBD > hourFinal && finishedTimeCurrent > finishedTimeBD)
             return true;
-        if(hourBD > hourFinal && finishedTimeCurrent == finishedTimeBD && minBD <= minuteFinal)
+        if(hourBD > hourFinal && finishedTimeCurrent == finishedTimeBD && minBD < minuteFinal)
             return true;
         return false;
     }
@@ -316,7 +316,6 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
     }
 
     public void send(boolean temp, String _dateBD) {
-        validReservation = true;
         if (temp)
             mDatabase.child("BlockedTables").child(String.valueOf(Table)).child(_dateBD).push().setValue(new TemporaryReservation(time, duration));
         createIntent();
@@ -338,35 +337,38 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
                            for (int i : fitTable)
                            {
                                Iterable<DataSnapshot> reservations = dataSnapshot.child(_dateBD).child(String.valueOf(i)).getChildren();
+                               boolean validTable = true;
                                for (DataSnapshot reservation : reservations) {
 
-                                   if(!overlapTimeReservation(reservation.child("mainDetails").child("time").getValue().toString(), Integer.valueOf(reservation.child("mainDetails").child("duration").getValue().toString())))
+                                   if(overlapTimeReservation(reservation.child("mainDetails").child("time").getValue().toString(), Integer.valueOf(reservation.child("mainDetails").child("duration").getValue().toString())))
                                    {
-
-                                       Table = i;
-                                       send(temp,_dateBD);
-                                       fitTable.clear();
+                                       validTable = false;
                                        break;
                                    }
+
                                }
+                              if(validTable) {
+                                  Table = i;
+                                  validReservation = true;
+                              }
 
                            }
-                       }
-                       else{
-                           send(temp,_dateBD);
-                           fitTable.clear();
                        }
 
                    } else {
                        if(fitTable != null && !fitTable.isEmpty()) {
                            Table = fitTable.get(0);
-                           send(temp,_dateBD);
+                           validReservation = true;
                        }
-                       fitTable.clear();
+
                    }
 
                    if(validReservation == false)
                        noReservationAvailableAlert("No table is available at the date and time chosen");
+                   else{
+                       send(temp,_dateBD);
+                       fitTable.clear();
+                   }
                }
 
                @Override
