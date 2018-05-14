@@ -69,8 +69,8 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
 
         dateInputOnClick(dateInput);
         timeInputOnClick(timeInput);
-        onButtonsOnClick(checkoutBtn, false);
-        onButtonsOnClick(mentionsBtn, true);
+        onButtonsOnClick(checkoutBtn, true,"CheckoutPage");
+        onButtonsOnClick(mentionsBtn, true,"SpecialMentionsPage");
 
 
     }
@@ -189,7 +189,7 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
 
     }
 
-    public void getTable(final boolean temp)
+    public void getTable(final boolean temp, final String activity)
     {
 
         mDatabase.child("tables").addValueEventListener(new ValueEventListener() {
@@ -206,7 +206,7 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
                 }
 
                 if(fitTable != null && !fitTable.isEmpty())
-                    checkBlockListThenVerifyReservation(temp);
+                    checkBlockListThenVerifyReservation(temp,activity);
                 else
                     noReservationAvailableAlert("No table is available at the date and time chosen");
             }
@@ -267,17 +267,20 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
         return false;
     }
 
-    public void createIntent()
+    public void createIntent(String activity)
     {
         MainReservation reservationObj = new MainReservation(name, noPers, date, time, duration, Table);
-
-        Intent c = new Intent(ReservationPage.this, Checkout.class);
+        Intent c;
+        if(activity.equals("SpecialMentionsPage"))
+            c = new Intent(ReservationPage.this,SpecialMentions.class);
+        else
+            c= new Intent(ReservationPage.this,Checkout.class);
+        c.putExtra("Source","ReservationPage");
         c.putExtra("mainReservation", reservationObj);
         startActivity(c);
         
     }
-
-    public void checkBlockListThenVerifyReservation(final boolean temp)
+    public void checkBlockListThenVerifyReservation(final boolean temp, final String activity)
     {
         final String _dateBD = date.replaceAll("/", "");
         if(mDatabase.child("BlockedTables").getKey() !=null)
@@ -303,7 +306,7 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
                     }
 
 
-                    verifyReservation(temp);
+                    verifyReservation(temp,activity);
                 }
 
                 @Override
@@ -312,18 +315,18 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
                 }
             });
         }
-        else  verifyReservation(temp);
+        else  verifyReservation(temp,activity);
     }
 
-    public void send(boolean temp, String _dateBD) {
+    public void send(boolean temp, String _dateBD,String activity) {
         if (temp)
             mDatabase.child("BlockedTables").child(String.valueOf(Table)).child(_dateBD).push().setValue(new TemporaryReservation(time, duration));
-        createIntent();
+        createIntent(activity);
         Toast.makeText(getApplicationContext(), "Saving reservation...", Toast.LENGTH_SHORT).show();
     }
 
 
-    public void verifyReservation(final boolean temp)
+    public void verifyReservation(final boolean temp, final String activity)
     {
         final String _dateBD = date.replaceAll("/", "");
        if( mDatabase.child("activeReservations").getKey() != null)
@@ -354,6 +357,10 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
 
                            }
                        }
+                       else{
+                           send(temp,_dateBD);
+                           fitTable.clear();
+                       }
 
                    } else {
                        if(fitTable != null && !fitTable.isEmpty()) {
@@ -366,7 +373,7 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
                    if(validReservation == false)
                        noReservationAvailableAlert("No table is available at the date and time chosen");
                    else{
-                       send(temp,_dateBD);
+                       send(temp,_dateBD,activity);
                        fitTable.clear();
                    }
                }
@@ -381,7 +388,7 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
        else {
            if(fitTable != null && !fitTable.isEmpty()) {
                Table = fitTable.get(0);
-               send(temp,_dateBD);
+               send(temp,_dateBD,activity);
            }
            fitTable.clear();
        }
@@ -399,7 +406,7 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
 
     }
 
-    public void onButtonsOnClick(Button btn, final boolean temp)
+    public void onButtonsOnClick(Button btn, final boolean temp, final String activity)
     {
         btn.setOnClickListener(new View.OnClickListener() {
             @TargetApi(Build.VERSION_CODES.O)
@@ -472,7 +479,7 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
                     date = dateInput.getText().toString();
                     time = timeInput.getText().toString();
                     duration = Integer.valueOf(durationInput.getText().toString());
-                    getTable(temp);
+                    getTable(temp,activity);
                 }
             }
         });

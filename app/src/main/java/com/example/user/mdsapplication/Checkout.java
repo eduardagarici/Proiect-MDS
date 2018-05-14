@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -22,7 +23,7 @@ import java.util.List;
 
 public class Checkout extends AppCompatActivity {
 
-    private MainReservation details; //= new MainReservation("Gigel",4,"28/10/2018","12:00",3,1);;
+    private MainReservation details;
     private Reservations reserve;
     private DatabaseReference mDatabase=FirebaseDatabase.getInstance().getReference();
     @Override
@@ -31,28 +32,32 @@ public class Checkout extends AppCompatActivity {
         setContentView(R.layout.activity_checkout);
         createObject();
         createDetails();
-        if (!reserve.getBoardGame().equals("none"))
+        if (reserve.getBoardGame()!=null)
             createBoardGame();
         if (reserve.getProducts()!=null && reserve.getProducts().size()!=0) {
-            createSpecialMentions();
-            addSpecialMentions();
+            for(Product p : reserve.getProducts()){
+                if(p.getQuantity()>0){
+                    createSpecialMentions();
+                    addSpecialMentions();
+                    break;
+                }
+            }
         }
         updateBaseOnSubmit();
     }
 
     public void createObject() {
-
-        /*List<Product> products = new LinkedList<>();
-        products.add(new Product(1,"drink","cola",5));
-        reserve=new Reservations(details,"rezistenta",products);*/
          Intent i=getIntent();
-        reserve=(Reservations) i.getSerializableExtra("reservation");
-        if(reserve==null){
+         String source=i.getStringExtra("Source");
+         Log.v("Source",source);
+         if(source.equals("SpecialMentionsPage"))
+            reserve=(Reservations) i.getSerializableExtra("reservation");
+         else
+         {
             details=(MainReservation) i.getSerializableExtra("mainReservation");
             reserve=new Reservations(details);
-        }
+         }
     }
-
     public void createDetails() {
         TextView userName = (TextView) findViewById(R.id.putName);
         TextView people = (TextView) findViewById(R.id.putPeople);
@@ -113,7 +118,7 @@ public class Checkout extends AppCompatActivity {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
 
-        if (!reserve.getBoardGame().equals("none"))
+        if (reserve.getBoardGame()!=null)
             relativeParams.addRule(RelativeLayout.BELOW, R.id.boardGame);
         else
             relativeParams.addRule(RelativeLayout.BELOW, R.id.details);
@@ -177,31 +182,34 @@ public class Checkout extends AppCompatActivity {
 
         double sum = 0;
         for (Product p : reserve.getProducts()) {
-            sum += p.getPricePerUnit();
-            LinearLayout item = new LinearLayout(this);
-            item.setLayoutParams(linearParams);
+            if(p.getQuantity()!=0) {
 
-            TextView name = new TextView(this);
-            name.setText(p.getName());
-            name.setTextSize(16);
-            name.setLayoutParams(linearParams);
+                sum += p.getPricePerUnit();
+                LinearLayout item = new LinearLayout(this);
+                item.setLayoutParams(linearParams);
 
-            TextView quantity = new TextView(this);
-            quantity.setText("" + p.getQuantity());
-            quantity.setGravity(Gravity.CENTER);
-            quantity.setTextSize(16);
-            quantity.setLayoutParams(linearParams);
+                TextView name = new TextView(this);
+                name.setText(p.getName());
+                name.setTextSize(16);
+                name.setLayoutParams(linearParams);
 
-            TextView price = new TextView(this);
-            price.setText("" + p.getPricePerUnit());
-            price.setGravity(Gravity.RIGHT);
-            price.setTextSize(16);
-            price.setLayoutParams(linearParams);
+                TextView quantity = new TextView(this);
+                quantity.setText("" + p.getQuantity());
+                quantity.setGravity(Gravity.CENTER);
+                quantity.setTextSize(16);
+                quantity.setLayoutParams(linearParams);
 
-            item.addView(name);
-            item.addView(quantity);
-            item.addView(price);
-            specialMentionsLayout.addView(item);
+                TextView price = new TextView(this);
+                price.setText("" + p.getPricePerUnit());
+                price.setGravity(Gravity.RIGHT);
+                price.setTextSize(16);
+                price.setLayoutParams(linearParams);
+
+                item.addView(name);
+                item.addView(quantity);
+                item.addView(price);
+                specialMentionsLayout.addView(item);
+            }
         }
         View horizontalLine = new View(this);
         horizontalLine.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 5));
@@ -237,6 +245,21 @@ public class Checkout extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mDatabase.child("activeReservations").child(reserve.getMainDetails().markerDateDatabase()).child(String.valueOf(reserve.getMainDetails().getTable())).child(reserve.getMainDetails().markerTimeDatabase()).setValue(reserve);
+                Toast t = Toast.makeText(Checkout.this, "You have succesfully finished your command", Toast.LENGTH_LONG);
+                t.show();
+                Thread thread = new Thread(){
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(4000);
+                            Intent i=new Intent(Checkout.this,ReservationPage.class);
+                            startActivity(i);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                thread.start();
             }
         });
     }

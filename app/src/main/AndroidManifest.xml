@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.example.user.mdsapplication.ui.activities.SplashActivity"
-            android:theme="@style/AppTheme.NoActionBar.Splash">
+            android:name=".ReservationPage">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,9 +19,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".SpecialMentions" />
         <activity android:name=".Checkout" />
-        <activity android:name=".ReservationPage"/>
+        <activity android:name="com.example.user.mdsapplication.ui.activities.SplashActivity"
+                  android:theme="@style/AppTheme.NoActionBar.Splash"/>
+        <activity android:name=".SpecialMentions"/>
         <activity
             android:name="com.example.user.mdsapplication.ui.activities.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
