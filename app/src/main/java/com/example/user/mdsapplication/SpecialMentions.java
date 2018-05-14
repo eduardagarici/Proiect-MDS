@@ -53,13 +53,17 @@ public class SpecialMentions extends AppCompatActivity implements AdapterView.On
     private List<String> boardGamesNames=new ArrayList<>();
     private FirebaseDatabase database=FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference=database.getReference();
-    private MainReservation details= new MainReservation("Gigel",4,"28/10/2018","12:00",3,1);
+    private MainReservation details;//=new MainReservation("Gigel",3,"29/10/2011","11:30",3,3);
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_special_mentions);
+
+        Intent i=getIntent();
+        Log.v("SourceSpec",i.getStringExtra("Source"));
+        details=(MainReservation) i.getSerializableExtra("mainReservation");
 
         setSlideShow();
         getDataBaseData();
@@ -72,9 +76,9 @@ public class SpecialMentions extends AppCompatActivity implements AdapterView.On
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                prepareProducts();
                 Reservations reserve=new Reservations(details,spinner.getSelectedItem().toString(),mProductList);
                 Intent i=new Intent(SpecialMentions.this,Checkout.class);
+                i.putExtra("Source","SpecialMentionsPage");
                 i.putExtra("reservation",reserve);
                 startActivity(i);
             }
@@ -288,11 +292,4 @@ public class SpecialMentions extends AppCompatActivity implements AdapterView.On
         return true;
     }
 
-    public void prepareProducts(){
-        for(Iterator<Product> iterator=mProductList.iterator();iterator.hasNext();){
-            Product value=iterator.next();
-            if(value.getQuantity()==0)
-                iterator.remove();
-        }
-    }
 }
