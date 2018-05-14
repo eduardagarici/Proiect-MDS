@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -40,16 +42,13 @@ import java.util.List;
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
             View v=View.inflate(mContext,R.layout.list_product_item,null);
-            //ViewGroup.LayoutParams params=v.getLayoutParams();
-            //params.height=40;
-            //v.setLayoutParams(params);
+            final Animation zoomAnimation= AnimationUtils.loadAnimation(mContext,R.anim.zoom);
 
-            ImageView imgProduct=(ImageView)v.findViewById(R.id.imageProduct);
+            final ImageView imgProduct=(ImageView)v.findViewById(R.id.imageProduct);
             int drawableResourceId = mContext.getResources().getIdentifier(mProducts.get(position).getResourceImage(),"drawable", mContext.getPackageName());
             Log.v("nameRes",mProducts.get(position).getResourceImage());
             Log.v("idRes",String.valueOf(drawableResourceId));
             imgProduct.setImageResource(drawableResourceId);
-
             TextView textProduct=(TextView)v.findViewById(R.id.textProduct);
             textProduct.setText(mProducts.get(position).getName());
             textProduct.setTextColor(Color.parseColor("#264073"));

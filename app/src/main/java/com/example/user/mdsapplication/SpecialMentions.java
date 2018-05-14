@@ -53,7 +53,8 @@ public class SpecialMentions extends AppCompatActivity implements AdapterView.On
     private List<String> boardGamesNames=new ArrayList<>();
     private FirebaseDatabase database=FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference=database.getReference();
-    private MainReservation details;//=new MainReservation("Gigel",3,"29/10/2011","11:30",3,3);
+    private MainReservation details;
+    private boolean buttonPressed=false;
 
 
     @Override
@@ -73,14 +74,33 @@ public class SpecialMentions extends AppCompatActivity implements AdapterView.On
 
     public void sendIntent(){
         Button submitButton=findViewById(R.id.submitButtonSpecial);
+        final Spinner spinner=findViewById(R.id.spinner);
+        Long tsLong = System.currentTimeMillis()/1000;
+        final String ts = tsLong.toString();
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                buttonPressed=true;
+                BlockedBoardGame blockedBoardGame=new BlockedBoardGame(details.getDate(),details.getTime(),details.getDuration(),ts);
+                databaseReference.child("blockedBoardGames").child(spinner.getSelectedItem().toString())
+                        .child(details.markerDateDatabase()).child(blockedBoardGame.getTime()).setValue(blockedBoardGame);
                 Reservations reserve=new Reservations(details,spinner.getSelectedItem().toString(),mProductList);
                 Intent i=new Intent(SpecialMentions.this,Checkout.class);
                 i.putExtra("Source","SpecialMentionsPage");
                 i.putExtra("reservation",reserve);
                 startActivity(i);
+                Thread thread = new Thread(){
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(2000);
+                            buttonPressed=false;
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                thread.start();
             }
         });
 
@@ -150,11 +170,12 @@ public class SpecialMentions extends AppCompatActivity implements AdapterView.On
                         Iterable<DataSnapshot> children = dataSnapshot.getChildren();
                         for (DataSnapshot child : children) {
                             BlockedBoardGame value = child.getValue(BlockedBoardGame.class);
-                            if (timeBetween(value.getTime(), details.getTime(), value.getDuration(), details.getDuration())==true) {
+                            if (timeBetween(value.getTime(), details.getTime(), value.getDuration(), details.getDuration())) {
                                 checkBoardGame(boardGame);
                             }
                             else {
-                                unaivalableToast();
+                                if(!buttonPressed)
+                                    unaivalableToast();
                             }
                         }
                     }
@@ -292,4 +313,10 @@ public class SpecialMentions extends AppCompatActivity implements AdapterView.On
         return true;
     }
 
+    @Override
+    public void onBackPressed(){
+        databaseReference.child("BlockedTables").child(String.valueOf(details.getTable())).child(details.markerDateDatabase())
+                .child(details.markerTimeDatabase()).removeValue() ;
+        super.onBackPressed();
+    }
 }

@@ -26,6 +26,7 @@ public class Checkout extends AppCompatActivity {
     private MainReservation details;
     private Reservations reserve;
     private DatabaseReference mDatabase=FirebaseDatabase.getInstance().getReference();
+    private Intent i;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +47,10 @@ public class Checkout extends AppCompatActivity {
         updateBaseOnSubmit();
     }
 
+
+
     public void createObject() {
-         Intent i=getIntent();
+         i=getIntent();
          String source=i.getStringExtra("Source");
          Log.v("Source",source);
          if(source.equals("SpecialMentionsPage"))
@@ -245,6 +248,9 @@ public class Checkout extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mDatabase.child("activeReservations").child(reserve.getMainDetails().markerDateDatabase()).child(String.valueOf(reserve.getMainDetails().getTable())).child(reserve.getMainDetails().markerTimeDatabase()).setValue(reserve);
+                mDatabase.child("BlockedTables").child(String.valueOf(reserve.getMainDetails().getTable())).child(reserve.getMainDetails().markerDateDatabase())
+                        .child(reserve.getMainDetails().markerTimeDatabase()).removeValue() ;
+                mDatabase.child("blockedBoardGames").child(reserve.getBoardGame()).child(reserve.getMainDetails().markerDateDatabase()).child(reserve.getMainDetails().getTime()).removeValue();
                 Toast t = Toast.makeText(Checkout.this, "You have succesfully finished your command", Toast.LENGTH_LONG);
                 t.show();
                 Thread thread = new Thread(){
@@ -263,4 +269,16 @@ public class Checkout extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        String source=i.getStringExtra("Source");
+        if(source.equals("SpecialMentionsPage"))
+            mDatabase.child("blockedBoardGames").child(reserve.getBoardGame()).child(reserve.getMainDetails().markerDateDatabase()).child(reserve.getMainDetails().getTime()).removeValue();
+        else{
+            mDatabase.child("BlockedTables").child(String.valueOf(reserve.getMainDetails().getTable())).child(reserve.getMainDetails().markerDateDatabase())
+                    .child(reserve.getMainDetails().markerTimeDatabase()).removeValue() ;
+        }
+        super.onBackPressed();
+    }
 }
+

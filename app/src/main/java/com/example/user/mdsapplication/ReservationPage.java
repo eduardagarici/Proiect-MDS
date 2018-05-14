@@ -41,27 +41,30 @@ import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 import static java.text.DateFormat.*;
 
 public class ReservationPage extends AppCompatActivity implements DatePickerDialog.OnDateSetListener , TimePickerDialog.OnTimeSetListener{
 
-     int day, month, year, hour, minute;
-     int dayFinal, monthFinal, yearFinal, hourFinal, minuteFinal;
-     List<Integer> fitTable = new LinkedList<>();
-     private int Table;
-     private boolean validReservation = false;
-     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-     private String name;
-     private int noPers;
-     private String date;
-     private String time;
-     private int duration;
+    int day, month, year, hour, minute;
+    int dayFinal, monthFinal, yearFinal, hourFinal, minuteFinal;
+    List<Integer> fitTable = new LinkedList<>();
+    private int Table;
+    private boolean validReservation = false;
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    private String name;
+    private int noPers;
+    private String date;
+    private String time;
+    private String randomKey;
+    private int duration;
+    private boolean showDialog = false;
     @Override
 
-     protected void onCreate(Bundle savedInstanceState) {
-         super.onCreate(savedInstanceState);
-         setContentView(R.layout.activity_reservation_page);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_reservation_page);
         final TextView dateInput = (TextView) findViewById(R.id.date);
         final TextView timeInput = (TextView) findViewById(R.id.time);
         Button checkoutBtn = (Button) findViewById(R.id.checkoutButton);
@@ -119,13 +122,13 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
 
         String reservationDateString;
         if(monthFinal < 10 && dayFinal < 10)
-             reservationDateString = "0" + dayFinal + "/" + "0" + monthFinal + "/" + yearFinal;
+            reservationDateString = "0" + dayFinal + "/" + "0" + monthFinal + "/" + yearFinal;
         else if(monthFinal < 10)
             reservationDateString = dayFinal + "/" + "0" + monthFinal + "/" + yearFinal;
         else if(dayFinal < 10)
             reservationDateString = "0" + dayFinal + "/" + monthFinal + "/" + yearFinal;
         else
-             reservationDateString = dayFinal + "/" + monthFinal + "/" + yearFinal;
+            reservationDateString = dayFinal + "/" + monthFinal + "/" + yearFinal;
 
         TextView date = (TextView) findViewById(R.id.date);
         date.setText(reservationDateString);
@@ -139,9 +142,9 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
 
         String reservationTimeString;
         if(hourFinal < 10 && minuteFinal < 10)
-              reservationTimeString = "0" + hourFinal + ":" + "0" + minuteFinal;
+            reservationTimeString = "0" + hourFinal + ":" + "0" + minuteFinal;
         else if(hourFinal < 10)
-             reservationTimeString = "0" + hourFinal + ":" + minuteFinal;
+            reservationTimeString = "0" + hourFinal + ":" + minuteFinal;
         else if (minuteFinal <10 )
             reservationTimeString = hourFinal + ":" + "0" + minuteFinal;
         else
@@ -152,19 +155,19 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
 
     public boolean lessThanCurrentDate()
     {
-       int  currentYear = Calendar.getInstance().get(Calendar.YEAR);
-       int  currentMonth = Calendar.getInstance().get(Calendar.MONTH) + 1;
-       int  currentDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        int  currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        int  currentMonth = Calendar.getInstance().get(Calendar.MONTH) + 1;
+        int  currentDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
         if (yearFinal < currentYear)
             return true;
         else
-            if(yearFinal == currentYear && monthFinal < currentMonth)
-            {
-                return true;
-            }
-             else
-                 if(yearFinal == currentYear && monthFinal == currentMonth && dayFinal < currentDay)
-                     return true;
+        if(yearFinal == currentYear && monthFinal < currentMonth)
+        {
+            return true;
+        }
+        else
+        if(yearFinal == currentYear && monthFinal == currentMonth && dayFinal < currentDay)
+            return true;
 
 
         return false;
@@ -178,8 +181,8 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
         if(hourFinal < 8)
             return true;
         if(yearFinal == Calendar.getInstance().get(Calendar.YEAR) &&
-           monthFinal == Calendar.getInstance().get(Calendar.MONTH) + 1 &&
-           dayFinal == Calendar.getInstance().get(Calendar.DAY_OF_MONTH)) {
+                monthFinal == Calendar.getInstance().get(Calendar.MONTH) + 1 &&
+                dayFinal == Calendar.getInstance().get(Calendar.DAY_OF_MONTH)) {
             if (hourFinal < currentHour)
                 return true;
             else if (hourFinal == currentHour && minuteFinal <= currentMinute)
@@ -193,9 +196,9 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
     {
 
         mDatabase.child("tables").addValueEventListener(new ValueEventListener() {
-             @Override
+            @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                 Iterable<DataSnapshot> children = dataSnapshot.getChildren();
+                Iterable<DataSnapshot> children = dataSnapshot.getChildren();
                 for (DataSnapshot c:children) {
                     int capacitate = c.child("capacity").getValue(Integer.class);
                     if(capacitate == noPers || capacitate == noPers + 1)
@@ -216,7 +219,7 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
 
             }
         });
-        }
+    }
 
     public boolean overlapTimeReservation( String timeBD, int durationBD)
     {
@@ -229,9 +232,9 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
         int finishedTimeCurrent = hourFinal + duration;
 
         if(hourBD <= hourFinal && finishedTimeBD > hourFinal)
-        return true;
+            return true;
         if(hourBD <= hourFinal && finishedTimeBD == hourFinal && minBD > minuteFinal)
-        return true;
+            return true;
         if(hourBD > hourFinal && finishedTimeCurrent > finishedTimeBD)
             return true;
         if(hourBD > hourFinal && finishedTimeCurrent == finishedTimeBD && minBD < minuteFinal)
@@ -278,7 +281,7 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
         c.putExtra("Source","ReservationPage");
         c.putExtra("mainReservation", reservationObj);
         startActivity(c);
-        
+
     }
     public void checkBlockListThenVerifyReservation(final boolean temp, final String activity)
     {
@@ -319,80 +322,77 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
     }
 
     public void send(boolean temp, String _dateBD,String activity) {
-        if (temp)
-            mDatabase.child("BlockedTables").child(String.valueOf(Table)).child(_dateBD).push().setValue(new TemporaryReservation(time, duration));
+        String _timeBD = time.replaceAll(":", "");
+        mDatabase.child("BlockedTables").child(String.valueOf(Table)).child(_dateBD).child(_timeBD).setValue(new TemporaryReservation(time, duration));
         createIntent(activity);
-        Toast.makeText(getApplicationContext(), "Saving reservation...", Toast.LENGTH_SHORT).show();
     }
 
 
     public void verifyReservation(final boolean temp, final String activity)
     {
         final String _dateBD = date.replaceAll("/", "");
-       if( mDatabase.child("activeReservations").getKey() != null)
-       {
-           mDatabase.child("activeReservations").addValueEventListener(new ValueEventListener() {
-               @Override
-               public void onDataChange(DataSnapshot dataSnapshot) {
-                   if (dataSnapshot.child(_dateBD).getValue() != null) {
-                       if (!tableWithoutReservation(dataSnapshot, _dateBD))
-                       {
-                           for (int i : fitTable)
-                           {
-                               Iterable<DataSnapshot> reservations = dataSnapshot.child(_dateBD).child(String.valueOf(i)).getChildren();
-                               boolean validTable = true;
-                               for (DataSnapshot reservation : reservations) {
+        if( mDatabase.child("activeReservations").getKey() != null)
+        {
+            mDatabase.child("activeReservations").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.child(_dateBD).getValue() != null) {
+                        if (!tableWithoutReservation(dataSnapshot, _dateBD))
+                        {
+                            for (int i : fitTable)
+                            {
+                                Iterable<DataSnapshot> reservations = dataSnapshot.child(_dateBD).child(String.valueOf(i)).getChildren();
+                                boolean validTable = true;
+                                for (DataSnapshot reservation : reservations) {
 
-                                   if(overlapTimeReservation(reservation.child("mainDetails").child("time").getValue().toString(), Integer.valueOf(reservation.child("mainDetails").child("duration").getValue().toString())))
-                                   {
-                                       validTable = false;
-                                       break;
-                                   }
+                                    if(overlapTimeReservation(reservation.child("mainDetails").child("time").getValue().toString(), Integer.valueOf(reservation.child("mainDetails").child("duration").getValue().toString())))
+                                    {
+                                        validTable = false;
+                                        break;
+                                    }
 
-                               }
-                              if(validTable) {
-                                  Table = i;
-                                  validReservation = true;
-                              }
+                                }
+                                if(validTable) {
+                                    Table = i;
+                                    validReservation = true;
+                                }
 
-                           }
-                       }
-                       else{
-                           send(temp,_dateBD);
-                           fitTable.clear();
-                       }
+                            }
+                        }
 
-                   } else {
-                       if(fitTable != null && !fitTable.isEmpty()) {
-                           Table = fitTable.get(0);
-                           validReservation = true;
-                       }
+                    } else {
+                        if(fitTable != null && !fitTable.isEmpty()) {
+                            Table = fitTable.get(0);
+                            validReservation = true;
+                        }
 
-                   }
+                    }
 
-                   if(validReservation == false)
-                       noReservationAvailableAlert("No table is available at the date and time chosen");
-                   else{
-                       send(temp,_dateBD,activity);
-                       fitTable.clear();
-                   }
-               }
+                    if(validReservation == false)
+                        noReservationAvailableAlert("No table is available at the date and time chosen");
+                    else{
+                        send(temp,_dateBD,activity);
+                        fitTable.clear();
+                        validReservation = false;
+                    }
+                }
 
-               @Override
-               public void onCancelled(DatabaseError databaseError) {
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-               }
+                }
 
-           });
-       }
-       else {
-           if(fitTable != null && !fitTable.isEmpty()) {
-               Table = fitTable.get(0);
-               send(temp,_dateBD,activity);
-           }
-           fitTable.clear();
-       }
+            });
+        }
+        else {
+            if(fitTable != null && !fitTable.isEmpty()) {
+                Table = fitTable.get(0);
+                send(temp,_dateBD,activity);
+            }
+            fitTable.clear();
+        }
     }
+
 
     void eliminateRedBorder(final EditText input)
     {
@@ -474,6 +474,7 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
 
 
                 if(ready) {
+
                     name = nameInput.getText().toString();
                     noPers = Integer.valueOf(noPersInput.getText().toString());
                     date = dateInput.getText().toString();
