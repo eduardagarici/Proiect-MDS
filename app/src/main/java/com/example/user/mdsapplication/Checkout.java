@@ -239,6 +239,14 @@ public class Checkout extends AppCompatActivity {
         submitButton.setText("Proceed to payment");
     }
 
+   public void onBackPressed()
+    {
+        String _dateBD = reserve.getMainDetails().getDate().replaceAll("/", "");
+        String _time = reserve.getMainDetails().getTime().replaceAll(":","");
+        mDatabase.child("BlockedTables").child(String.valueOf(reserve.getMainDetails().getTable())).child(_dateBD).child(_time).setValue(null);
+         super.onBackPressed();
+    }
+
     public void updateBaseOnSubmit() {
         Button submitButton=findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {

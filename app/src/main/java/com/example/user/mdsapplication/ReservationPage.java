@@ -41,6 +41,7 @@ import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 import static java.text.DateFormat.*;
 
@@ -57,6 +58,7 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
      private String date;
      private String time;
      private int duration;
+     private boolean showDialog = false;
     @Override
 
      protected void onCreate(Bundle savedInstanceState) {
@@ -230,11 +232,11 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
 
         if(hourBD <= hourFinal && finishedTimeBD > hourFinal)
         return true;
-        if(hourBD <= hourFinal && finishedTimeBD == hourFinal && minBD > minuteFinal)
+        if(finishedTimeBD == hourFinal && minBD > minuteFinal)
         return true;
-        if(hourBD > hourFinal && finishedTimeCurrent > finishedTimeBD)
+        if(hourBD > hourFinal && finishedTimeCurrent > hourBD)
             return true;
-        if(hourBD > hourFinal && finishedTimeCurrent == finishedTimeBD && minBD < minuteFinal)
+        if(finishedTimeCurrent == hourBD && minBD < minuteFinal)
             return true;
         return false;
     }
@@ -319,10 +321,9 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
     }
 
     public void send(boolean temp, String _dateBD,String activity) {
-        if (temp)
-            mDatabase.child("BlockedTables").child(String.valueOf(Table)).child(_dateBD).push().setValue(new TemporaryReservation(time, duration));
+        String _timeBD = time.replaceAll(":", "");
+        mDatabase.child("BlockedTables").child(String.valueOf(Table)).child(_dateBD).child(_timeBD).setValue(new TemporaryReservation(time, duration));
         createIntent(activity);
-        Toast.makeText(getApplicationContext(), "Saving reservation...", Toast.LENGTH_SHORT).show();
     }
 
 
@@ -357,10 +358,6 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
 
                            }
                        }
-                       else{
-                           send(temp,_dateBD);
-                           fitTable.clear();
-                       }
 
                    } else {
                        if(fitTable != null && !fitTable.isEmpty()) {
@@ -370,11 +367,16 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
 
                    }
 
-                   if(validReservation == false)
+                   if(validReservation == false && showDialog ) {
                        noReservationAvailableAlert("No table is available at the date and time chosen");
-                   else{
+                       showDialog = false;
+                   }
+                   else if(validReservation == true){
+                       showDialog = false;
                        send(temp,_dateBD,activity);
                        fitTable.clear();
+                       validReservation = false;
+
                    }
                }
 
@@ -393,6 +395,7 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
            fitTable.clear();
        }
     }
+
 
     void eliminateRedBorder(final EditText input)
     {
@@ -474,6 +477,7 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
 
 
                 if(ready) {
+                    showDialog = true;
                     name = nameInput.getText().toString();
                     noPers = Integer.valueOf(noPersInput.getText().toString());
                     date = dateInput.getText().toString();

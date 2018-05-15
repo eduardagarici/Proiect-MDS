@@ -6,13 +6,13 @@
     <string name="hintDateText">  Date </string>
     <string name="hintTimeText"> Hour </string>
     <string name="hintDurationText"> No. of hours </string>
-    <string name="reservationTitle"> REZERVA ONLINE </string>
-    <string name="nameText"> Nume </string>
-    <string name="noPers"> Numar Persoane </string>
-    <string name="dateText"> Data </string>
-    <string name="timeText"> Ora </string>
-    <string name="durationText"> Durata </string>
-    <string name="specialMentions"> Alte mentiuni </string>
+    <string name="reservationTitle"> ONLINE RESERVATION </string>
+    <string name="nameText"> Name </string>
+    <string name="noPers"> Number of people </string>
+    <string name="dateText"> Date </string>
+    <string name="timeText"> Time </string>
+    <string name="durationText"> Duration </string>
+    <string name="specialMentions"> Other mentions </string>
 
     <string name="action_logout">Logout</string>
     <string name="action_settings">Settings</string>

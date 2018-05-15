@@ -292,4 +292,12 @@ public class SpecialMentions extends AppCompatActivity implements AdapterView.On
         return true;
     }
 
+    public void onBackPressed()
+    {
+        String _dateBD = details.getDate().replaceAll("/", "");
+        String _time = details.getTime().replaceAll(":","");
+        databaseReference.child("BlockedTables").child(String.valueOf(details.getTable())).child(_dateBD).child(_time).setValue(null);
+        super.onBackPressed();
+    }
+
 }
