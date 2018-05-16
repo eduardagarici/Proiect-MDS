@@ -19,6 +19,9 @@
     <color name="red_A200">#FF5252</color>
     <color name="red_A400">#FF1744</color>
     <color name="red_A700">#D50000</color>
+    <color name="buttonCheckout">#D22D2D</color>
+
+
 
     <color name="deep_purple_50">#EDE7F6</color>
     <color name="deep_purple_100">#D1C4E9</color>
@@ -181,6 +184,9 @@
     <color name="amber_A400">#FFC400</color>
     <color name="amber_A700">#FFAB00</color>
 
+    <color name="colorProduct">#264073</color>
+    <color name="CheckoutXmlBG">#F2EFEF</color>
+
     <color name="brown_50">#EFEBE9</color>
     <color name="brown_100">#D7CCC8</color>
     <color name="brown_200">#BCAAA4</color>
@@ -188,9 +194,13 @@
     <color name="brown_400">#8D6E63</color>
     <color name="brown_500">#795548</color>
     <color name="brown_600">#6D4C41</color>
+    <color name="brown_product">#631E26</color>
+    <color name="brown_divider">#9F6060</color>
     <color name="brown_700">#5D4037</color>
     <color name="brown_800">#4E342E</color>
     <color name="brown_900">#3E2723</color>
+
+    <color name="checkoutBg">#ecdfdf</color>
 
     <color name="purple_50">#F3E5F5</color>
     <color name="purple_100">#E1BEE7</color>

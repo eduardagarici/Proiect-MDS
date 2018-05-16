@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.user.mdsapplication.utils.Constants;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -81,13 +83,15 @@ public class Checkout extends AppCompatActivity {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
         relativeParams.addRule(RelativeLayout.BELOW, R.id.details);
-        relativeParams.leftMargin = 100;
-        relativeParams.rightMargin = 100;
+        relativeParams.leftMargin = (int) getResources().getDimension(R.dimen.marginCheckoutBg);
+        relativeParams.rightMargin = (int) getResources().getDimension(R.dimen.marginCheckoutBg);
+
+
 
         boardGameLayout.setOrientation(LinearLayout.HORIZONTAL);
 
         boardGameLayout.setId(R.id.boardGame);
-        boardGameLayout.setBackgroundColor(Color.parseColor("#ecdfdf"));
+        boardGameLayout.setBackgroundColor(getResources().getColor(R.color.checkoutBg));
         boardGameLayout.setLayoutParams(relativeParams);
         RelativeLayout rootLayout = findViewById(R.id.rootLayout);
         rootLayout.addView(boardGameLayout);
@@ -96,17 +100,19 @@ public class Checkout extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 1
         );
-        linearParams.setMargins(5,5,5,5);
+        linearParams.setMargins( (int)getResources().getDimension(R.dimen.margin_min), (int)getResources().getDimension(R.dimen.margin_min), (int)getResources().getDimension(R.dimen.margin_min), (int)getResources().getDimension(R.dimen.margin_min));
         TextView boardGame = new TextView(this);
         TextView boardGameName = new TextView(this);
         boardGame.setLayoutParams(linearParams);
-        boardGame.setText("BoardGame");
-        boardGame.setTextColor(Color.parseColor("#631E26"));
-        boardGame.setTextSize(16);
+        boardGame.setText(getResources().getText(R.string.bg));
+        boardGame.setTextColor(getResources().getColor(R.color.brown_product));
+        boardGame.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_checkout));
+        // boardGame.setTextSize(getResources().getDimension(R.dimen.text_medium));
         boardGame.setGravity(Gravity.LEFT);
         boardGameName.setGravity(Gravity.CENTER);
 
-        boardGameName.setTextSize(16);
+        boardGameName.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_checkout));
+        //boardGameName.setTextSize(getResources().getDimension(R.dimen.text_medium));
         boardGameName.setLayoutParams(linearParams);
         boardGameName.setText(reserve.getBoardGame());
         boardGameLayout.addView(boardGame);
@@ -125,9 +131,9 @@ public class Checkout extends AppCompatActivity {
             relativeParams.addRule(RelativeLayout.BELOW, R.id.boardGame);
         else
             relativeParams.addRule(RelativeLayout.BELOW, R.id.details);
-        relativeParams.topMargin = 100;
-        relativeParams.leftMargin = 100;
-        relativeParams.rightMargin = 100;
+        relativeParams.topMargin = (int)getResources().getDimension(R.dimen.marginCheckoutBg);
+        relativeParams.leftMargin = (int)getResources().getDimension(R.dimen.marginCheckoutBg);
+        relativeParams.rightMargin = (int)getResources().getDimension(R.dimen.marginCheckoutBg);
 
         specialMentionsLayout.setId(R.id.specialMentions);
         specialMentionsLayout.setLayoutParams(relativeParams);
@@ -137,10 +143,10 @@ public class Checkout extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 1
         );
-        linearParams.setMargins(10,0,10,0);
+        linearParams.setMargins((int)getResources().getDimension(R.dimen.margin_small),0,(int)getResources().getDimension(R.dimen.margin_small),0);
 
         specialMentionsLayout.setOrientation(LinearLayout.VERTICAL);
-        specialMentionsLayout.setBackgroundColor(Color.parseColor("#ffffff"));
+        specialMentionsLayout.setBackgroundColor(getResources().getColor(R.color.grey_50));
         RelativeLayout rootLayout = findViewById(R.id.rootLayout);
         rootLayout.addView(specialMentionsLayout);
 
@@ -154,18 +160,21 @@ public class Checkout extends AppCompatActivity {
         quantity.setLayoutParams(linearParams);
         price.setLayoutParams(linearParams);
 
-        name.setText("Name");
-        name.setTextSize(17);
-        name.setTextColor(Color.parseColor("#631E26"));
+        name.setText(getResources().getText(R.string.nameText));
+        name.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_checkout));
+        //name.setTextSize(getResources().getDimension(R.dimen.text_medium));
+        name.setTextColor(getResources().getColor(R.color.brown_product));
         name.setLayoutParams(linearParams);
-        quantity.setText("Quantity");
-        quantity.setTextColor(Color.parseColor("#631E26"));
-        quantity.setTextSize(17);
+        quantity.setText(getResources().getText(R.string.quantity));
+        quantity.setTextColor(getResources().getColor(R.color.brown_product));
+        quantity.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_checkout));
+        //quantity.setTextSize(getResources().getDimension(R.dimen.text_medium));
         quantity.setLayoutParams(linearParams);
         quantity.setGravity(Gravity.CENTER);
-        price.setText("Price");
-        price.setTextColor(Color.parseColor("#631E26"));
-        price.setTextSize(17);
+        price.setText(getResources().getText(R.string.price));
+        price.setTextColor(getResources().getColor(R.color.brown_product));
+        price.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_checkout));
+        // price.setTextSize(getResources().getDimension(R.dimen.text_medium));
         price.setLayoutParams(linearParams);
         price.setGravity(Gravity.RIGHT);
 
@@ -182,30 +191,33 @@ public class Checkout extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 1
         );
-
+        linearParams.setMargins((int)getResources().getDimension(R.dimen.margin_min),0,(int)getResources().getDimension(R.dimen.margin_min),0);
         double sum = 0;
         for (Product p : reserve.getProducts()) {
             if(p.getQuantity()!=0) {
 
-                sum += p.getPricePerUnit();
+                sum += p.getPricePerUnit()*p.getQuantity();
                 LinearLayout item = new LinearLayout(this);
                 item.setLayoutParams(linearParams);
 
                 TextView name = new TextView(this);
                 name.setText(p.getName());
-                name.setTextSize(16);
+                name.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_checkout));
+                //name.setTextSize(getResources().getDimension(R.dimen.text_medium));
                 name.setLayoutParams(linearParams);
 
                 TextView quantity = new TextView(this);
                 quantity.setText("" + p.getQuantity());
                 quantity.setGravity(Gravity.CENTER);
-                quantity.setTextSize(16);
+                quantity.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_checkout));
+                //quantity.setTextSize(getResources().getDimension(R.dimen.text_medium));
                 quantity.setLayoutParams(linearParams);
 
                 TextView price = new TextView(this);
-                price.setText("" + p.getPricePerUnit());
+                price.setText("" + p.getPricePerUnit()*p.getQuantity());
                 price.setGravity(Gravity.RIGHT);
-                price.setTextSize(16);
+                price.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_checkout));
+                //price.setTextSize(getResources().getDimension(R.dimen.text_medium));
                 price.setLayoutParams(linearParams);
 
                 item.addView(name);
@@ -215,8 +227,8 @@ public class Checkout extends AppCompatActivity {
             }
         }
         View horizontalLine = new View(this);
-        horizontalLine.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 5));
-        horizontalLine.setBackgroundColor(Color.parseColor("#ecdfdf"));
+        horizontalLine.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (int)getResources().getDimension(R.dimen.horizontalLine)));
+        horizontalLine.setBackgroundColor(getResources().getColor(R.color.checkoutBg));
         specialMentionsLayout.addView(horizontalLine);
 
         LinearLayout totalBar = new LinearLayout(this);
@@ -224,40 +236,51 @@ public class Checkout extends AppCompatActivity {
 
         TextView total = new TextView(this);
         total.setLayoutParams(linearParams);
-        total.setText("Total:");
-        total.setTextSize(16);
-        total.setTextColor(Color.parseColor("#264073"));
+        total.setText(getResources().getText(R.string.total));
+        total.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_total));
+        // total.setTextSize(getResources().getDimension(R.dimen.text_medium));
+        total.setTextColor(getResources().getColor(R.color.colorProduct));
 
         TextView totalPrice = new TextView(this);
         totalPrice.setLayoutParams(linearParams);
         totalPrice.setText("" + sum);
         totalPrice.setGravity(Gravity.RIGHT);
-        totalPrice.setTextColor(Color.parseColor("#264073"));
+        totalPrice.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_total));
+        totalPrice.setTextColor(getResources().getColor(R.color.colorProduct));
 
         totalBar.addView(total);
         totalBar.addView(totalPrice);
         specialMentionsLayout.addView(totalBar);
 
         Button submitButton = findViewById(R.id.submitButton);
-        submitButton.setText("Proceed to payment");
+        submitButton.setText(getResources().getText(R.string.payment));
     }
 
     public void updateBaseOnSubmit() {
         Button submitButton=findViewById(R.id.submitButton);
+        List<Product> auxProducts=new LinkedList<>();
+        auxProducts=getListFromProducts(reserve.getProducts());
+
+        final Reservations auxReservation=new Reservations(reserve.getMainDetails(),auxProducts);
+        if(reserve.getBoardGame()!=null)
+            auxReservation.setBoardGame(reserve.getBoardGame());
+
+
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDatabase.child("activeReservations").child(reserve.getMainDetails().markerDateDatabase()).child(String.valueOf(reserve.getMainDetails().getTable())).child(reserve.getMainDetails().markerTimeDatabase()).setValue(reserve);
+                mDatabase.child("activeReservations").child(reserve.getMainDetails().markerDateDatabase())
+                        .child(String.valueOf(reserve.getMainDetails().getTable())).child(reserve.getMainDetails().markerTimeDatabase()).setValue(auxReservation);
                 mDatabase.child("BlockedTables").child(String.valueOf(reserve.getMainDetails().getTable())).child(reserve.getMainDetails().markerDateDatabase())
                         .child(reserve.getMainDetails().markerTimeDatabase()).removeValue() ;
                 mDatabase.child("blockedBoardGames").child(reserve.getBoardGame()).child(reserve.getMainDetails().markerDateDatabase()).child(reserve.getMainDetails().getTime()).removeValue();
-                Toast t = Toast.makeText(Checkout.this, "You have succesfully finished your command", Toast.LENGTH_LONG);
+                Toast t = Toast.makeText(Checkout.this, getResources().getText(R.string.orderSucces), Toast.LENGTH_LONG);
                 t.show();
                 Thread thread = new Thread(){
                     @Override
                     public void run() {
                         try {
-                            Thread.sleep(4000);
+                            Thread.sleep(Constants.THREAD_SLEEP_CHECKOUT);
                             Intent i=new Intent(Checkout.this,ReservationPage.class);
                             startActivity(i);
                         } catch (Exception e) {
@@ -279,6 +302,14 @@ public class Checkout extends AppCompatActivity {
                     .child(reserve.getMainDetails().markerTimeDatabase()).removeValue() ;
         }
         super.onBackPressed();
+    }
+
+    List<Product> getListFromProducts(List<Product> aux){
+        List<Product> products=new LinkedList<>();
+        for(Product p : aux)
+            if(p.getQuantity()>0)
+                products.add(p);
+        return products;
     }
 }
 

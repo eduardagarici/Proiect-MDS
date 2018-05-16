@@ -11,32 +11,30 @@
         android:id="@+id/rootLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F2EFEF">
+        android:background="@color/CheckoutXmlBG">
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/orderSummary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="74dp"
-            android:text="Order Summary"
-            android:textSize="22dp"
-            android:textColor="#264073"
-            tools:layout_editor_absoluteX="145dp"
-            tools:layout_editor_absoluteY="45dp" />
+            android:layout_marginTop="@dimen/margin_huge"
+            android:text="@string/orderSumarry"
+            android:textSize="@dimen/text_huge"
+            android:textColor="@color/colorProduct"
+            android:layout_marginBottom="@dimen/margin_avg"/>
 
         <LinearLayout
             android:id="@+id/details"
-            android:layout_width="333dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="108dp"
-            android:background="#FFFFFF"
+            android:layout_marginLeft="@dimen/marginCheckoutBg"
+            android:layout_marginRight="@dimen/marginCheckoutBg"
+            android:layout_below="@+id/orderSummary"
+            android:background="@color/grey_50"
             android:orientation="vertical"
-            tools:layout_editor_absoluteX="39dp"
-            tools:layout_editor_absoluteY="103dp">
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -46,20 +44,21 @@
                     android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_margin="@dimen/margin_min"
                     android:layout_weight="1"
-                    android:text="Name"
-                    android:textColor="#631E26"
-                    android:textSize="17dp" />
+                    android:text="@string/nameText"
+                    android:textColor="@color/brown_product"
+                    android:textSize="@dimen/text_medium" />
 
                 <TextView
                     android:id="@+id/putName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_margin="@dimen/margin_min"
                     android:layout_weight="1"
                     android:textAlignment="center"
-                    android:textSize="17dp" />
+                    android:textSize="@dimen/text_medium"
+                    android:textColor="@color/brown_product"/>
             </LinearLayout>
 
             <LinearLayout
@@ -70,20 +69,20 @@
                     android:id="@+id/people"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_margin="@dimen/margin_min"
                     android:layout_weight="1"
-                    android:text="No of people"
-                    android:textColor="#631E26"
-                    android:textSize="17dp" />
-
+                    android:text="@string/people"
+                    android:textColor="@color/brown_product"
+                    android:textSize="@dimen/text_medium" />
                 <TextView
                     android:id="@+id/putPeople"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_margin="@dimen/margin_min"
                     android:layout_weight="1"
                     android:textAlignment="center"
-                    android:textSize="17dp" />
+                    android:textSize="@dimen/text_medium"
+                    android:textColor="@color/brown_product"/>
 
             </LinearLayout>
 
@@ -95,20 +94,21 @@
                     android:id="@+id/date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_margin="@dimen/margin_min"
                     android:layout_weight="1"
-                    android:text="Date"
-                    android:textColor="#631E26"
-                    android:textSize="17dp" />
+                    android:text="@string/date"
+                    android:textColor="@color/brown_product"
+                    android:textSize="@dimen/text_medium" />
 
                 <TextView
                     android:id="@+id/putDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_margin="@dimen/margin_min"
                     android:layout_weight="1"
                     android:textAlignment="center"
-                    android:textSize="17dp" />
+                    android:textSize="@dimen/text_medium"
+                    android:textColor="@color/brown_product"/>
             </LinearLayout>
 
             <LinearLayout
@@ -119,20 +119,21 @@
                     android:id="@+id/time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_margin="@dimen/margin_min"
                     android:layout_weight="1"
-                    android:text="Time"
+                    android:text="@string/time"
                     android:textColor="#631E26"
-                    android:textSize="17dp" />
+                    android:textSize="@dimen/text_medium" />
 
                 <TextView
                     android:id="@+id/putTime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_margin="@dimen/margin_min"
                     android:layout_weight="1"
                     android:textAlignment="center"
-                    android:textSize="17dp" />
+                    android:textSize="@dimen/text_medium"
+                    android:textColor="@color/brown_product"/>
             </LinearLayout>
 
             <LinearLayout
@@ -143,20 +144,21 @@
                     android:id="@+id/duration"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp"
+                    android:layout_margin="@dimen/margin_min"
                     android:layout_weight="1"
                     android:text="Estimated duration"
-                    android:textColor="#631E26"
-                    android:textSize="17dp" />
+                    android:textColor="@color/brown_product"
+                    android:textSize="@dimen/text_medium" />
 
                 <TextView
                     android:id="@+id/putDuration"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_margin="@dimen/margin_min"
                     android:layout_weight="1"
                     android:textAlignment="center"
-                    android:textSize="17dp" />
+                    android:textSize="@dimen/text_medium"
+                    android:textColor="@color/brown_product"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -166,17 +168,17 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="11dp"
-            android:text="Submit Order"
-            android:backgroundTint="#D22D2D"
-            android:textColor="#ffffff"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:text="@string/submit"
+            android:backgroundTint="@color/buttonCheckout"
+            android:textColor="@color/grey_50"
             />
 
 
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="@dimen/checkoutImg"
             app:srcCompat="@drawable/logo" />
 
     </RelativeLayout>

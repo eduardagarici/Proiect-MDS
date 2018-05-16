@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.example.user.mdsapplication.utils.Constants;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -93,7 +94,7 @@ public class SpecialMentions extends AppCompatActivity implements AdapterView.On
                     @Override
                     public void run() {
                         try {
-                            Thread.sleep(2000);
+                            Thread.sleep(Constants.THREAD_SLEEP_SPECIAL);
                             buttonPressed=false;
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -115,7 +116,7 @@ public class SpecialMentions extends AppCompatActivity implements AdapterView.On
         viewFlipper.setInAnimation(fade_in);
         viewFlipper.setOutAnimation(fade_out);
         viewFlipper.setAutoStart(true);
-        viewFlipper.setFlipInterval(5000);
+        viewFlipper.setFlipInterval(Constants.SLIDESHOW_FLIP);
         viewFlipper.startFlipping();
     }
     public void setListView(){
@@ -130,7 +131,7 @@ public class SpecialMentions extends AppCompatActivity implements AdapterView.On
                 mProductList.add(s);
         }
 
-        adapter=new ProductListAdapter(getApplicationContext(),mProductList);
+        adapter=new ProductListAdapter(getApplicationContext(),this,mProductList);
         lvProduct.setAdapter(adapter);
 
         lvProduct.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -190,8 +191,6 @@ public class SpecialMentions extends AppCompatActivity implements AdapterView.On
     }
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        TextView choseBoardGame=(TextView)findViewById(R.id.boardGame);
-
     }
 
     public void checkBoardGameReservations(final BoardGame boardGame){
@@ -222,7 +221,7 @@ public class SpecialMentions extends AppCompatActivity implements AdapterView.On
     public void unaivalableToast(){
         Toast t;
         LinearLayout spinLayout=findViewById(R.id.chooseBoardGame);
-        t = Toast.makeText(SpecialMentions.this, "Unavailable game,please pick another game", Toast.LENGTH_LONG);
+        t = Toast.makeText(SpecialMentions.this, R.string.unavailableGame, Toast.LENGTH_LONG);
         t.setGravity(Gravity.CENTER, spinLayout.getScrollX(), spinLayout.getScrollY());
         t.show();
         spinner.setSelection(0);
@@ -285,19 +284,19 @@ public class SpecialMentions extends AppCompatActivity implements AdapterView.On
         LinearLayout spinLayout=findViewById(R.id.chooseBoardGame);
         if(boardGame.getMaxPlayers()<details.getNoPers())
         {
-            t=Toast.makeText(this,"Maximum players exceeded",Toast.LENGTH_LONG);
+            t=Toast.makeText(this,R.string.maxPlayersExceeded,Toast.LENGTH_LONG);
             t.setGravity(Gravity.CENTER,spinLayout.getScrollX(),spinLayout.getScrollY());
             t.show();
             spinner.setBackground(redBorder);
         }
         if(boardGame.getMinPlayers()>details.getNoPers()) {
-            t = Toast.makeText(this, "Maximum players exceeded", Toast.LENGTH_LONG);
+            t = Toast.makeText(this, R.string.minPlayers, Toast.LENGTH_LONG);
             t.setGravity(Gravity.CENTER, spinLayout.getScrollX(), spinLayout.getScrollY());
             t.show();
             spinner.setBackground(redBorder);
         }
         if(boardGame.getDuration()<details.getDuration()){
-            t = Toast.makeText(this, "Not enough time to finish the game", Toast.LENGTH_LONG);
+            t = Toast.makeText(this, R.string.noTime, Toast.LENGTH_LONG);
             t.setGravity(Gravity.CENTER, spinLayout.getScrollX(), spinLayout.getScrollY());
             t.show();
             spinner.setBackground(redBorder);
