@@ -1,19 +1,20 @@
 <resources>
-    <string name="app_name">Boardgames check-in</string>
+    <string name="app_name"> App_Name</string>
     <string name="checkoutText"> CHECKOUT </string>
     <string name="hintNamePers"> Your name </string>
     <string name="hintNoPers"> No. of people </string>
     <string name="hintDateText">  Date </string>
     <string name="hintTimeText"> Hour </string>
     <string name="hintDurationText"> No. of hours </string>
-    <string name="reservationTitle"> ONLINE RESERVATION </string>
+<<<<<<< HEAD
+    <string name="reservationTitle"> REZERVA ONLINE </string>
     <string name="nameText"> Name </string>
-    <string name="noPers"> Number of people </string>
-    <string name="dateText"> Date </string>
-    <string name="timeText"> Time </string>
-    <string name="durationText"> Duration </string>
-    <string name="specialMentions"> Other mentions </string>
- <string name="chooseBg">Choose Boardgame</string>
+    <string name="noPers"> Numar Persoane </string>
+    <string name="dateText"> Data </string>
+    <string name="timeText"> Ora </string>
+    <string name="durationText"> Durata </string>
+    <string name="specialMentions"> Alte mentiuni </string>
+    <string name="chooseBg">Choose Boardgame</string>
     <string name="foodDrink">Food and Drinks</string>
     <string name="checkout">Checkout</string>
     <string name="maxPlayersExceeded">Maximum players exceeded </string>
@@ -32,6 +33,15 @@
     <string name="duration">Estimated Duration</string>
     <string name="time">Time</string>
     <string name="submit">Submit Order</string>
+=======
+    <string name="reservationTitle"> ONLINE RESERVATION </string>
+    <string name="nameText"> Name </string>
+    <string name="noPers"> Number of people </string>
+    <string name="dateText"> Date </string>
+    <string name="timeText"> Time </string>
+    <string name="durationText"> Duration </string>
+    <string name="specialMentions"> Other mentions </string>
+>>>>>>> 4e2dd69c2c5bb12f85a286ded1a4dfd3b7507a26
 
     <string name="action_logout">Logout</string>
     <string name="action_settings">Settings</string>
@@ -40,6 +50,7 @@
     <string name="login">Login</string>
     <string name="login_register">New user,tap here to register</string>
     <string name="register">Register</string>
+
 
     <string name="user_successfully_added">User successfully added</string>
     <string name="user_unable_to_add">Unable to add user</string>
@@ -53,8 +64,5 @@
     <string name="logout">Logout</string>
     <string name="are_you_sure">Are you sure?</string>
     <string name="cancel">Cancel</string>
-
-    <string name="ma_demo_header_text">hsdaiodh saudhfudisah fuidsahi udshaui fhdsiah fuidsah ihdusa</string>
-    <string name="ma_title">Demo title</string>
 >>>>>>> chatPage
 </resources>

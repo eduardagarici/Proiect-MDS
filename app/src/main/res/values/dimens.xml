@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="text_small">12sp</dimen>
+    <dimen name="text_medium">18sp</dimen>
+    <dimen name="text_huge">24sp</dimen>
+
+    <dimen name="text_checkout">7sp</dimen>
+    <dimen name="text_total">9sp</dimen>
+
+    <dimen name="chooseBg">66dp</dimen>
+    <dimen name="spinnerWidth">67dp</dimen>
+    <dimen name="slideShowHeight">162dp</dimen>
+    <dimen name="slideShowLayout">200dp</dimen>
+    <dimen name="productLayoutHeight">200dp</dimen>
+    <dimen name="divider">5dp</dimen>
+    <dimen name="horizontalLine">5dp</dimen>
+
+
+    <dimen name="checkoutImg">65dp</dimen>
+
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
@@ -17,6 +35,7 @@
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_avg">16dp</dimen>
     <dimen name="margin_big">32dp</dimen>
+    <dimen name="marginCheckoutBg">40dp</dimen>
     <dimen name="margin_huge">64dp</dimen>
 
     <dimen name="user_icon_width">36dp</dimen>
