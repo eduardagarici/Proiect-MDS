@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"> App_Name</string>
+    <string name="app_name">Boardgames check-in</string>
     <string name="checkoutText"> CHECKOUT </string>
     <string name="hintNamePers"> Your name </string>
     <string name="hintNoPers"> No. of people </string>
@@ -34,5 +34,8 @@
     <string name="logout">Logout</string>
     <string name="are_you_sure">Are you sure?</string>
     <string name="cancel">Cancel</string>
+
+    <string name="ma_demo_header_text">hsdaiodh saudhfudisah fuidsahi udshaui fhdsiah fuidsah ihdusa</string>
+    <string name="ma_title">Demo title</string>
 >>>>>>> chatPage
 </resources>
