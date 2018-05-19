@@ -119,7 +119,7 @@ public class SpecialMentions extends AppCompatActivity implements AdapterView.On
         viewFlipper.setFlipInterval(Constants.SLIDESHOW_FLIP);
         viewFlipper.startFlipping();
     }
-    public void setListView(){
+        public void setListView(){
         lvProduct=findViewById(R.id.ListView);
         mProductList=new LinkedList<>();
         for(Product d : drinks){

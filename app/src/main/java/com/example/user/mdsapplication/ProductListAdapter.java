@@ -54,8 +54,6 @@ import java.util.List;
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
             View v=View.inflate(mContext,R.layout.list_product_item,null);
-            final Animation zoomAnimation= AnimationUtils.loadAnimation(mContext,R.anim.zoom);
-
             final ImageView imgProduct=(ImageView)v.findViewById(R.id.imageProduct);
             final int drawableResourceId = mContext.getResources().getIdentifier(mProducts.get(position).getResourceImage(),"drawable", mContext.getPackageName());
             imgProduct.setImageResource(drawableResourceId);
@@ -75,12 +73,13 @@ import java.util.List;
                     ImageView imageView = new ImageView(mActivity);
                     imageView.setImageResource(drawableResourceId);
                     builder.addContentView(imageView, new RelativeLayout.LayoutParams(
-                            //ViewGroup.LayoutParams.WRAP_CONTENT,
-                            //ViewGroup.LayoutParams.WRAP_CONTENT));
-                            Constants.DIALOG_DIMEN,Constants.DIALOG_DIMEN));
+                            ViewGroup.LayoutParams.WRAP_CONTENT,
+                            ViewGroup.LayoutParams.WRAP_CONTENT));
+                            //Constants.DIALOG_DIMEN,Constants.DIALOG_DIMEN));
                     builder.show();
                     Window window = builder.getWindow();
                     window.setLayout(Constants.DIALOG_DIMEN,Constants.DIALOG_DIMEN);
+                    //window.setLayout(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
                 }
             });
             TextView textProduct=(TextView)v.findViewById(R.id.textProduct);

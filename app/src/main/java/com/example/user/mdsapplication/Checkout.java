@@ -106,12 +106,14 @@ public class Checkout extends AppCompatActivity {
         boardGame.setLayoutParams(linearParams);
         boardGame.setText(getResources().getText(R.string.bg));
         boardGame.setTextColor(getResources().getColor(R.color.brown_product));
-        boardGame.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_checkout));
+        boardGame.setTextSize(18);
+        //boardGame.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_checkout));
         // boardGame.setTextSize(getResources().getDimension(R.dimen.text_medium));
         boardGame.setGravity(Gravity.LEFT);
         boardGameName.setGravity(Gravity.CENTER);
 
-        boardGameName.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_checkout));
+        boardGameName.setTextSize(18);
+        //boardGameName.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_checkout));
         //boardGameName.setTextSize(getResources().getDimension(R.dimen.text_medium));
         boardGameName.setLayoutParams(linearParams);
         boardGameName.setText(reserve.getBoardGame());
@@ -161,19 +163,22 @@ public class Checkout extends AppCompatActivity {
         price.setLayoutParams(linearParams);
 
         name.setText(getResources().getText(R.string.nameText));
-        name.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_checkout));
+        name.setTextSize(18);
+        //name.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_checkout));
         //name.setTextSize(getResources().getDimension(R.dimen.text_medium));
         name.setTextColor(getResources().getColor(R.color.brown_product));
         name.setLayoutParams(linearParams);
         quantity.setText(getResources().getText(R.string.quantity));
         quantity.setTextColor(getResources().getColor(R.color.brown_product));
-        quantity.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_checkout));
+        quantity.setTextSize(18);
+        //quantity.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_checkout));
         //quantity.setTextSize(getResources().getDimension(R.dimen.text_medium));
         quantity.setLayoutParams(linearParams);
         quantity.setGravity(Gravity.CENTER);
         price.setText(getResources().getText(R.string.price));
         price.setTextColor(getResources().getColor(R.color.brown_product));
-        price.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_checkout));
+        price.setTextSize(18);
+        //price.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_checkout));
         // price.setTextSize(getResources().getDimension(R.dimen.text_medium));
         price.setLayoutParams(linearParams);
         price.setGravity(Gravity.RIGHT);
@@ -202,21 +207,24 @@ public class Checkout extends AppCompatActivity {
 
                 TextView name = new TextView(this);
                 name.setText(p.getName());
-                name.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_checkout));
+                name.setTextSize(18);
+                //name.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_checkout));
                 //name.setTextSize(getResources().getDimension(R.dimen.text_medium));
                 name.setLayoutParams(linearParams);
 
                 TextView quantity = new TextView(this);
                 quantity.setText("" + p.getQuantity());
                 quantity.setGravity(Gravity.CENTER);
-                quantity.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_checkout));
+                quantity.setTextSize(18);
+                //quantity.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_checkout));
                 //quantity.setTextSize(getResources().getDimension(R.dimen.text_medium));
                 quantity.setLayoutParams(linearParams);
 
                 TextView price = new TextView(this);
                 price.setText("" + p.getPricePerUnit()*p.getQuantity());
                 price.setGravity(Gravity.RIGHT);
-                price.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_checkout));
+                price.setTextSize(18);
+                //price.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_checkout));
                 //price.setTextSize(getResources().getDimension(R.dimen.text_medium));
                 price.setLayoutParams(linearParams);
 
@@ -237,15 +245,16 @@ public class Checkout extends AppCompatActivity {
         TextView total = new TextView(this);
         total.setLayoutParams(linearParams);
         total.setText(getResources().getText(R.string.total));
-        total.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_total));
-        // total.setTextSize(getResources().getDimension(R.dimen.text_medium));
+        //total.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_total));
+        total.setTextSize(30);
         total.setTextColor(getResources().getColor(R.color.colorProduct));
 
         TextView totalPrice = new TextView(this);
         totalPrice.setLayoutParams(linearParams);
         totalPrice.setText("" + sum);
         totalPrice.setGravity(Gravity.RIGHT);
-        totalPrice.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_total));
+        //totalPrice.setTextSize(TypedValue.COMPLEX_UNIT_SP,getResources().getDimension(R.dimen.text_total));
+        totalPrice.setTextSize(30);
         totalPrice.setTextColor(getResources().getColor(R.color.colorProduct));
 
         totalBar.addView(total);
@@ -254,14 +263,6 @@ public class Checkout extends AppCompatActivity {
 
         Button submitButton = findViewById(R.id.submitButton);
         submitButton.setText(getResources().getText(R.string.payment));
-    }
-
-   public void onBackPressed()
-    {
-        String _dateBD = reserve.getMainDetails().getDate().replaceAll("/", "");
-        String _time = reserve.getMainDetails().getTime().replaceAll(":","");
-        mDatabase.child("BlockedTables").child(String.valueOf(reserve.getMainDetails().getTable())).child(_dateBD).child(_time).setValue(null);
-         super.onBackPressed();
     }
 
     public void updateBaseOnSubmit() {
