@@ -191,8 +191,6 @@ public class SpecialMentions extends AppCompatActivity implements AdapterView.On
     }
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        TextView choseBoardGame=(TextView)findViewById(R.id.boardGame);
-
     }
 
     public void checkBoardGameReservations(final BoardGame boardGame){
@@ -314,10 +312,21 @@ public class SpecialMentions extends AppCompatActivity implements AdapterView.On
         return true;
     }
 
+<<<<<<< HEAD
     @Override
     public void onBackPressed(){
         databaseReference.child("BlockedTables").child(String.valueOf(details.getTable())).child(details.markerDateDatabase())
                 .child(details.markerTimeDatabase()).removeValue() ;
         super.onBackPressed();
     }
+=======
+    public void onBackPressed()
+    {
+        String _dateBD = details.getDate().replaceAll("/", "");
+        String _time = details.getTime().replaceAll(":","");
+        databaseReference.child("BlockedTables").child(String.valueOf(details.getTable())).child(_dateBD).child(_time).setValue(null);
+        super.onBackPressed();
+    }
+
+>>>>>>> 4e2dd69c2c5bb12f85a286ded1a4dfd3b7507a26
 }
