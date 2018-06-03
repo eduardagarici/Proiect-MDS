@@ -32,6 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
+        android:fadingEdge="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="16:19"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +40,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/joc" />
+        app:srcCompat="@drawable/joc"
+        android:tint="#6F000000"/>
 
     <Button
         android:id="@+id/button2"

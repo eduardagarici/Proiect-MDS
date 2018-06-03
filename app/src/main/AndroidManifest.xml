@@ -9,9 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".ReservationPage">
-
+        <activity android:name=".Payment">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,21 +18,23 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".Checkout" />
-        <activity android:name="com.example.user.mdsapplication.ui.activities.SplashActivity"
-                  android:theme="@style/AppTheme.NoActionBar.Splash"/>
-        <activity android:name=".SpecialMentions"/>
         <activity
-            android:name="com.example.user.mdsapplication.ui.activities.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:name=".ui.activities.SplashActivity"
+            android:theme="@style/AppTheme.NoActionBar.Splash" />
+        <activity android:name=".SpecialMentions" />
         <activity
-            android:name="com.example.user.mdsapplication.ui.activities.RegisterActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:name=".ui.activities.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.example.user.mdsapplication.ui.activities.ChatActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:name=".ui.activities.RegisterActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.activities.ChatActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.activities.UserListingActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ReservationPage"></activity>
     </application>
 
 </manifest>

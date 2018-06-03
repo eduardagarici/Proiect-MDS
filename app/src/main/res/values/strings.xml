@@ -13,7 +13,7 @@
     <string name="timeText"> Time </string>
     <string name="durationText"> Duration </string>
     <string name="specialMentions"> Other mentions </string>
- <string name="chooseBg">Choose Boardgame</string>
+    <string name="chooseBg">Choose Boardgame</string>
     <string name="foodDrink">Food and Drinks</string>
     <string name="checkout">Checkout</string>
     <string name="maxPlayersExceeded">Maximum players exceeded </string>
@@ -53,5 +53,5 @@
     <string name="logout">Logout</string>
     <string name="are_you_sure">Are you sure?</string>
     <string name="cancel">Cancel</string>
->>>>>>> chatPage
+    >>>>>>> chatPage
 </resources>

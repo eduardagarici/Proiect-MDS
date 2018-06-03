@@ -29,6 +29,7 @@ public class Checkout extends AppCompatActivity {
     private Reservations reserve;
     private DatabaseReference mDatabase=FirebaseDatabase.getInstance().getReference();
     private Intent i;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -298,6 +299,8 @@ public class Checkout extends AppCompatActivity {
                     }
                 };
                 thread.start();
+
+
             }
         });
     }
