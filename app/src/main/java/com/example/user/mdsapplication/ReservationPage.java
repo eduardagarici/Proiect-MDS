@@ -178,7 +178,10 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
         int currentMinute = Calendar.getInstance().get(Calendar.MINUTE);
 
         if(hourFinal < 8)
+        {
+            Toast.makeText(ReservationPage.this,"Pragram: 8:00-24:00",Toast.LENGTH_LONG).show();
             return true;
+        }
         if(yearFinal == Calendar.getInstance().get(Calendar.YEAR) &&
            monthFinal == Calendar.getInstance().get(Calendar.MONTH) + 1 &&
            dayFinal == Calendar.getInstance().get(Calendar.DAY_OF_MONTH)) {
@@ -200,7 +203,8 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
                  Iterable<DataSnapshot> children = dataSnapshot.getChildren();
                 for (DataSnapshot c:children) {
                     int capacitate = c.child("capacity").getValue(Integer.class);
-                    if(capacitate == noPers || capacitate == noPers + 1)
+                    Boolean availableaTable = c.child("available").getValue(Boolean.class);
+                    if((capacitate == noPers || capacitate == noPers + 1) && availableaTable == true)
                     {
                         fitTable.add(Integer.parseInt(c.getKey()));
 
@@ -466,7 +470,8 @@ public class ReservationPage extends AppCompatActivity implements DatePickerDial
                 }
                 else if (hourFinal != 0 && Integer.valueOf(durationInput.getText().toString()) + hourFinal > 24)
                 {
-                    durationInput.setBackground(redBorder);
+                    Toast.makeText(ReservationPage.this,"Pragram: 8:00-24:00",Toast.LENGTH_LONG).show();
+                   // durationInput.setBackground(redBorder);
                     if(ready) ready = false;
                 }
 
