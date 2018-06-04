@@ -54,6 +54,6 @@
     <string name="are_you_sure">Are you sure?</string>
     <string name="cancel">Cancel</string>
 
-    <string name="ma_demo_header_text">hsdaiodh saudhfudisah fuidsahi udshaui fhdsiah fuidsah ihdusa</string>
-    <string name="ma_title">Demo title</string>
+    <string name="ma_header_text">Cafeneaua noastra te asteapta sa petreci timpul liber in compania prietenilor avand la dispozitie o gama variata de jocuri de societate. Pe durata jocurilor, snackbarul va sta la dispozitie. Enjoy!</string>
+    <string name="ma_title">Bine ati venit!</string>
 </resources>

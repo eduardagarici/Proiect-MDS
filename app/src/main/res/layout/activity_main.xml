@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:background="@color/colorPrimaryDark">
+    android:background="@android:color/white">
 
     <TextView
         android:layout_alignParentTop="true"
@@ -15,17 +15,17 @@
         android:textSize="24sp"
         android:textAlignment="center"
         android:textStyle="italic"
-        android:textColor="@android:color/white"
+        android:textColor="#9F6060"
         android:text="@string/ma_title"
         android:id="@+id/ma_title_tv"/>
 
     <ImageView
         android:layout_below="@+id/ma_title_tv"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:background="@color/colorAccent"
+        android:layout_width="wrap_content"
+        android:layout_height="180dp"
         android:layout_centerHorizontal="true"
         android:contentDescription="Header image"
+        android:src="@drawable/boardgamelogo"
         android:id="@+id/ma_main_img"/>
 
     <TextView
@@ -34,8 +34,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:textSize="18sp"
-        android:textColor="@android:color/white"
-        android:text="@string/ma_demo_header_text"
+        android:textColor="#AC5353"
+        android:text="@string/ma_header_text"
         android:textAlignment="center"
         android:id="@+id/ma_greetings_tv"/>
 
@@ -49,7 +49,7 @@
         android:text="Log in"
         android:textColor="@android:color/white"
         android:textSize="18sp"
-        android:background="@color/indigo_A400"
+        android:background="#D22D2D"
         android:id="@+id/ma_login_btn"
         android:visibility="gone"/>
 
@@ -63,7 +63,7 @@
         android:text="Reserve"
         android:textColor="@android:color/white"
         android:textSize="18sp"
-        android:background="@color/indigo_A400"
+        android:background="#D22D2D"
         android:id="@+id/ma_reserve_btn"
         android:visibility="gone"/>
 
@@ -71,15 +71,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimaryDark">
+        android:layout_alignParentBottom="true">
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:layout_alignParentLeft="true"
             android:layout_margin="8dp"
-            android:background="@color/indigo_A400"
+            android:background="#D22D2D"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:text="Chat"
@@ -91,10 +90,10 @@
             android:layout_marginLeft="10dp"
             android:layout_alignParentRight="true"
             android:layout_margin="8dp"
-            android:background="@color/indigo_A400"
+            android:background="#D22D2D"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            android:text="Call"
+            android:text="Suna"
             android:id="@+id/ma_call_btn"/>
     </RelativeLayout>
 
