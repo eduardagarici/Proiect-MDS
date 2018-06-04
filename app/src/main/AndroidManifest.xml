@@ -10,31 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-<<<<<<< HEAD
             android:name="com.example.user.mdsapplication.ui.activities.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar.Splash">
-
         </activity>
         <activity android:name=".MainActivity">
-=======
-            android:name=".ReservationPage">
-
->>>>>>> b25f25a0b14223fa3031586f438fd35bb6504f8b
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
         <activity android:name=".SpecialMentions" />
-=======
-        <activity android:name=".MainActivity" />
->>>>>>> b25f25a0b14223fa3031586f438fd35bb6504f8b
         <activity android:name=".Checkout" />
-        <activity android:name="com.example.user.mdsapplication.ui.activities.SplashActivity"
-                  android:theme="@style/AppTheme.NoActionBar.Splash"/>
-        <activity android:name=".SpecialMentions"/>
+        <activity android:name=".ReservationPage"/>
         <activity
             android:name="com.example.user.mdsapplication.ui.activities.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar"/>

@@ -35,11 +35,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.4.1'
     implementation 'org.greenrobot:eventbus:3.0.0'
     implementation 'com.android.support:design:27.1.1'
-<<<<<<< HEAD
-=======
     implementation 'com.commit451:PhotoView:1.2.4'
-
->>>>>>> b25f25a0b14223fa3031586f438fd35bb6504f8b
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
