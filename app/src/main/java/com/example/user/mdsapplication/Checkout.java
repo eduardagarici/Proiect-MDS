@@ -29,6 +29,8 @@ public class Checkout extends AppCompatActivity {
     private Reservations reserve;
     private DatabaseReference mDatabase=FirebaseDatabase.getInstance().getReference();
     private Intent i;
+    boolean pay=false;
+    double priceFinal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -263,7 +265,9 @@ public class Checkout extends AppCompatActivity {
         specialMentionsLayout.addView(totalBar);
 
         Button submitButton = findViewById(R.id.submitButton);
-        submitButton.setText(getResources().getText(R.string.payment));
+        submitButton.setText(getResources().getText(R.string.paymentPage));
+        pay=true;
+        priceFinal=sum;
     }
 
     public void updateBaseOnSubmit() {
@@ -279,28 +283,36 @@ public class Checkout extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDatabase.child("activeReservations").child(reserve.getMainDetails().markerDateDatabase())
-                        .child(String.valueOf(reserve.getMainDetails().getTable())).child(reserve.getMainDetails().markerTimeDatabase()).setValue(auxReservation);
-                mDatabase.child("BlockedTables").child(String.valueOf(reserve.getMainDetails().getTable())).child(reserve.getMainDetails().markerDateDatabase())
-                        .child(reserve.getMainDetails().markerTimeDatabase()).removeValue() ;
-                mDatabase.child("blockedBoardGames").child(reserve.getBoardGame()).child(reserve.getMainDetails().markerDateDatabase()).child(reserve.getMainDetails().getTime()).removeValue();
-                Toast t = Toast.makeText(Checkout.this, getResources().getText(R.string.orderSucces), Toast.LENGTH_LONG);
-                t.show();
-                Thread thread = new Thread(){
-                    @Override
-                    public void run() {
-                        try {
-                            Thread.sleep(Constants.THREAD_SLEEP_CHECKOUT);
-                            Intent i=new Intent(Checkout.this,ReservationPage.class);
-                            startActivity(i);
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                if (pay == false) {
+                    mDatabase.child("activeReservations").child(reserve.getMainDetails().markerDateDatabase())
+                            .child(String.valueOf(reserve.getMainDetails().getTable())).child(reserve.getMainDetails().markerTimeDatabase()).setValue(auxReservation);
+                    mDatabase.child("BlockedTables").child(String.valueOf(reserve.getMainDetails().getTable())).child(reserve.getMainDetails().markerDateDatabase())
+                            .child(reserve.getMainDetails().markerTimeDatabase()).removeValue();
+                    mDatabase.child("blockedBoardGames").child(reserve.getBoardGame()).child(reserve.getMainDetails().markerDateDatabase()).child(reserve.getMainDetails().getTime()).removeValue();
+                    Toast t = Toast.makeText(Checkout.this, getResources().getText(R.string.orderSucces), Toast.LENGTH_LONG);
+                    t.show();
+                    Thread thread = new Thread() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(Constants.THREAD_SLEEP_CHECKOUT);
+                                Intent i = new Intent(Checkout.this, ReservationPage.class);
+                                startActivity(i);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
-                    }
-                };
-                thread.start();
+                    };
+                    thread.start();
 
 
+                }
+                else{
+                    Intent i=new Intent(Checkout.this,Payment.class);
+                    i.putExtra("price",priceFinal);
+                    i.putExtra("reserve",reserve);
+                    startActivity(i);
+                }
             }
         });
     }
