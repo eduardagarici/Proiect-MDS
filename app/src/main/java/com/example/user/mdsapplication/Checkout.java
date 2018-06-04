@@ -316,7 +316,7 @@ public class Checkout extends AppCompatActivity {
             }
         });
     }
-    @Override
+    /*@Override
     public void onBackPressed() {
         String source=i.getStringExtra("Source");
         if(source.equals("SpecialMentionsPage"))
@@ -326,7 +326,7 @@ public class Checkout extends AppCompatActivity {
                     .child(reserve.getMainDetails().markerTimeDatabase()).removeValue() ;
         }
         super.onBackPressed();
-    }
+    }*/
 
     List<Product> getListFromProducts(List<Product> aux){
         List<Product> products=new LinkedList<>();

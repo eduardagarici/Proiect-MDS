@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.user.mdsapplication.R;
+import com.example.user.mdsapplication.ReservationPage;
 import com.example.user.mdsapplication.core.login.LoginContract;
 import com.example.user.mdsapplication.core.login.LoginPresenter;
 import com.example.user.mdsapplication.ui.activities.RegisterActivity;
@@ -23,13 +24,14 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
 
     private EditText mETxtEmail, mETxtPassword;
     private Button mBtnLogin, mBtnRegister;
-
+    private static String from;
     private ProgressDialog mProgressDialog;
 
-    public static LoginFragment newInstance() {
+    public static LoginFragment newInstance(String frm) {
         Bundle args = new Bundle();
         LoginFragment fragment = new LoginFragment();
         fragment.setArguments(args);
+        from = frm;
         return fragment;
     }
 
@@ -95,8 +97,14 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Log
     public void onLoginSuccess(String message) {
         mProgressDialog.dismiss();
         Toast.makeText(getActivity(), "Logged in successfully", Toast.LENGTH_SHORT).show();
-        UserListingActivity.startActivity(getActivity(),
+        if(from.equals("chatBtn"))
+            UserListingActivity.startActivity(getActivity(),
                 Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        else{
+            Intent reserveIntent = new Intent(getContext(), ReservationPage.class);
+            reserveIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(reserveIntent);
+        }
     }
 
     @Override

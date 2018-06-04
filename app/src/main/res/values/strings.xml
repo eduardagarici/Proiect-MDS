@@ -53,5 +53,7 @@
     <string name="logout">Logout</string>
     <string name="are_you_sure">Are you sure?</string>
     <string name="cancel">Cancel</string>
-    >>>>>>> chatPage
+
+    <string name="ma_demo_header_text">hsdaiodh saudhfudisah fuidsahi udshaui fhdsiah fuidsah ihdusa</string>
+    <string name="ma_title">Demo title</string>
 </resources>
