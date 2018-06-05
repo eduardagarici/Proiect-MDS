@@ -62,13 +62,14 @@ public class Payment extends AppCompatActivity {
                     public void run() {
                         try {
                             Thread.sleep(Constants.THREAD_SLEEP_CHECKOUT);
-                            Intent i = new Intent(Payment.this, ReservationPage.class);
+                            Intent i = new Intent(Payment.this, MainActivity.class);
                             startActivity(i);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
                 };
+                thread.start();
             }
         });
     }

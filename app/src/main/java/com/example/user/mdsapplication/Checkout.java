@@ -296,7 +296,7 @@ public class Checkout extends AppCompatActivity {
                         public void run() {
                             try {
                                 Thread.sleep(Constants.THREAD_SLEEP_CHECKOUT);
-                                Intent i = new Intent(Checkout.this, ReservationPage.class);
+                                Intent i = new Intent(Checkout.this, MainActivity.class);
                                 startActivity(i);
                             } catch (Exception e) {
                                 e.printStackTrace();

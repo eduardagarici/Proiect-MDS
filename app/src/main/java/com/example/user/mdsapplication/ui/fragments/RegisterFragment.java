@@ -18,6 +18,7 @@ import com.example.user.mdsapplication.core.registration.RegisterContract;
 import com.example.user.mdsapplication.core.registration.RegisterPresenter;
 import com.example.user.mdsapplication.core.users.add.AddUserContract;
 import com.example.user.mdsapplication.core.users.add.AddUserPresenter;
+import com.example.user.mdsapplication.ui.activities.LoginActivity;
 import com.example.user.mdsapplication.ui.activities.UserListingActivity;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -109,8 +110,9 @@ public class RegisterFragment extends Fragment implements View.OnClickListener, 
     public void onAddUserSuccess(String message) {
         mProgressDialog.dismiss();
         Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
-        UserListingActivity.startActivity(getActivity(),
-                Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        //UserListingActivity.startActivity(getActivity(),
+              //  Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        Intent i = new Intent(getContext(), LoginActivity.class);
     }
 
     @Override
